@@ -1,0 +1,3111 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    COMENTARIO
+
+Grammar
+
+Rule 0     S' -> init
+Rule 1     init -> program
+Rule 2     init -> <empty>
+Rule 3     program -> main
+Rule 4     program -> main labels
+Rule 5     main -> MAIN DOS_PUNTOS instructions
+Rule 6     main -> error instructions
+Rule 7     labels -> labels label
+Rule 8     labels -> label
+Rule 9     label -> LABEL DOS_PUNTOS instructions
+Rule 10    label -> error instructions
+Rule 11    instructions -> instructions instruction
+Rule 12    instructions -> instruction
+Rule 13    instruction -> exit PUNTO_COMA
+Rule 14    instruction -> unset PUNTO_COMA
+Rule 15    instruction -> print PUNTO_COMA
+Rule 16    instruction -> if PUNTO_COMA
+Rule 17    instruction -> set PUNTO_COMA
+Rule 18    instruction -> goto PUNTO_COMA
+Rule 19    instruction -> error PUNTO_COMA
+Rule 20    exit -> EXIT
+Rule 21    goto -> GOTO LABEL
+Rule 22    unset -> UNSET PAR_IZQ var PAR_DER
+Rule 23    print -> PRINT PAR_IZQ var PAR_DER
+Rule 24    if -> IF PAR_IZQ condition PAR_DER goto
+Rule 25    condition -> expression
+Rule 26    condition -> var
+Rule 27    set -> var IGUAL assignation
+Rule 28    var -> register
+Rule 29    var -> register positions
+Rule 30    register -> TEMPORAL
+Rule 31    register -> PARAMETRO
+Rule 32    register -> DEVUELTO
+Rule 33    register -> RETORNO
+Rule 34    register -> PILA
+Rule 35    register -> PUNTERO
+Rule 36    positions -> positions position
+Rule 37    positions -> position
+Rule 38    position -> COR_IZQ cont COR_DER
+Rule 39    primary -> ENTERO
+Rule 40    primary -> CADENA
+Rule 41    primary -> CARACTER
+Rule 42    primary -> DECIMAL
+Rule 43    assignation -> data
+Rule 44    assignation -> array
+Rule 45    assignation -> read
+Rule 46    assignation -> cast
+Rule 47    assignation -> expression
+Rule 48    assignation -> pointer
+Rule 49    data -> primary
+Rule 50    data -> var
+Rule 51    cont -> primary
+Rule 52    cont -> register
+Rule 53    array -> ARRAY PAR_IZQ PAR_DER
+Rule 54    read -> READ PAR_IZQ PAR_DER
+Rule 55    cast -> PAR_IZQ type PAR_DER var
+Rule 56    type -> FLOAT
+Rule 57    type -> INT
+Rule 58    type -> CHAR
+Rule 59    expression -> aritmetic
+Rule 60    expression -> logical
+Rule 61    expression -> bitxbit
+Rule 62    expression -> ralational
+Rule 63    aritmetic -> data SUMA data
+Rule 64    aritmetic -> data RESTA data
+Rule 65    aritmetic -> data MULT data
+Rule 66    aritmetic -> data DIV data
+Rule 67    aritmetic -> data MOD data
+Rule 68    aritmetic -> RESTA data
+Rule 69    aritmetic -> ABS PAR_IZQ data PAR_DER
+Rule 70    logical -> data AND data
+Rule 71    logical -> data OR data
+Rule 72    logical -> data XOR data
+Rule 73    logical -> NOT data
+Rule 74    bitxbit -> data AND_BIT data
+Rule 75    bitxbit -> data OR_BIT data
+Rule 76    bitxbit -> data XOR_BIT data
+Rule 77    bitxbit -> data SHIFT_DER data
+Rule 78    bitxbit -> data SHIFT_IZQ data
+Rule 79    bitxbit -> NOT_BIT data
+Rule 80    ralational -> data ES_IGUAL data
+Rule 81    ralational -> data NO_IGUAL data
+Rule 82    ralational -> data MAYOR data
+Rule 83    ralational -> data MENOR data
+Rule 84    ralational -> data MAYOR_IGUAL data
+Rule 85    ralational -> data MENOR_IGUAL data
+Rule 86    pointer -> AND_BIT var
+
+Terminals, with rules where they appear
+
+ABS                  : 69
+AND                  : 70
+AND_BIT              : 74 86
+ARRAY                : 53
+CADENA               : 40
+CARACTER             : 41
+CHAR                 : 58
+COMENTARIO           : 
+COR_DER              : 38
+COR_IZQ              : 38
+DECIMAL              : 42
+DEVUELTO             : 32
+DIV                  : 66
+DOS_PUNTOS           : 5 9
+ENTERO               : 39
+ES_IGUAL             : 80
+EXIT                 : 20
+FLOAT                : 56
+GOTO                 : 21
+IF                   : 24
+IGUAL                : 27
+INT                  : 57
+LABEL                : 9 21
+MAIN                 : 5
+MAYOR                : 82
+MAYOR_IGUAL          : 84
+MENOR                : 83
+MENOR_IGUAL          : 85
+MOD                  : 67
+MULT                 : 65
+NOT                  : 73
+NOT_BIT              : 79
+NO_IGUAL             : 81
+OR                   : 71
+OR_BIT               : 75
+PARAMETRO            : 31
+PAR_DER              : 22 23 24 53 54 55 69
+PAR_IZQ              : 22 23 24 53 54 55 69
+PILA                 : 34
+PRINT                : 23
+PUNTERO              : 35
+PUNTO_COMA           : 13 14 15 16 17 18 19
+READ                 : 54
+RESTA                : 64 68
+RETORNO              : 33
+SHIFT_DER            : 77
+SHIFT_IZQ            : 78
+SUMA                 : 63
+TEMPORAL             : 30
+UNSET                : 22
+XOR                  : 72
+XOR_BIT              : 76
+error                : 6 10 19
+
+Nonterminals, with rules where they appear
+
+aritmetic            : 59
+array                : 44
+assignation          : 27
+bitxbit              : 61
+cast                 : 46
+condition            : 24
+cont                 : 38
+data                 : 43 63 63 64 64 65 65 66 66 67 67 68 69 70 70 71 71 72 72 73 74 74 75 75 76 76 77 77 78 78 79 80 80 81 81 82 82 83 83 84 84 85 85
+exit                 : 13
+expression           : 25 47
+goto                 : 18 24
+if                   : 16
+init                 : 0
+instruction          : 11 12
+instructions         : 5 6 9 10 11
+label                : 7 8
+labels               : 4 7
+logical              : 60
+main                 : 3 4
+pointer              : 48
+position             : 36 37
+positions            : 29 36
+primary              : 49 51
+print                : 15
+program              : 1
+ralational           : 62
+read                 : 45
+register             : 28 29 52
+set                  : 17
+type                 : 55
+unset                : 14
+var                  : 22 23 26 27 50 55 86
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . init
+    (1) init -> . program
+    (2) init -> .
+    (3) program -> . main
+    (4) program -> . main labels
+    (5) main -> . MAIN DOS_PUNTOS instructions
+    (6) main -> . error instructions
+
+    $end            reduce using rule 2 (init -> .)
+    MAIN            shift and go to state 4
+    error           shift and go to state 5
+
+    init                           shift and go to state 1
+    program                        shift and go to state 2
+    main                           shift and go to state 3
+
+state 1
+
+    (0) S' -> init .
+
+
+
+state 2
+
+    (1) init -> program .
+
+    $end            reduce using rule 1 (init -> program .)
+
+
+state 3
+
+    (3) program -> main .
+    (4) program -> main . labels
+    (7) labels -> . labels label
+    (8) labels -> . label
+    (9) label -> . LABEL DOS_PUNTOS instructions
+    (10) label -> . error instructions
+
+    $end            reduce using rule 3 (program -> main .)
+    LABEL           shift and go to state 8
+    error           shift and go to state 9
+
+    labels                         shift and go to state 6
+    label                          shift and go to state 7
+
+state 4
+
+    (5) main -> MAIN . DOS_PUNTOS instructions
+
+    DOS_PUNTOS      shift and go to state 10
+
+
+state 5
+
+    (6) main -> error . instructions
+    (11) instructions -> . instructions instruction
+    (12) instructions -> . instruction
+    (13) instruction -> . exit PUNTO_COMA
+    (14) instruction -> . unset PUNTO_COMA
+    (15) instruction -> . print PUNTO_COMA
+    (16) instruction -> . if PUNTO_COMA
+    (17) instruction -> . set PUNTO_COMA
+    (18) instruction -> . goto PUNTO_COMA
+    (19) instruction -> . error PUNTO_COMA
+    (20) exit -> . EXIT
+    (22) unset -> . UNSET PAR_IZQ var PAR_DER
+    (23) print -> . PRINT PAR_IZQ var PAR_DER
+    (24) if -> . IF PAR_IZQ condition PAR_DER goto
+    (27) set -> . var IGUAL assignation
+    (21) goto -> . GOTO LABEL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    error           shift and go to state 11
+    EXIT            shift and go to state 20
+    UNSET           shift and go to state 21
+    PRINT           shift and go to state 23
+    IF              shift and go to state 24
+    GOTO            shift and go to state 25
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    instructions                   shift and go to state 12
+    instruction                    shift and go to state 13
+    exit                           shift and go to state 14
+    unset                          shift and go to state 15
+    print                          shift and go to state 16
+    if                             shift and go to state 17
+    set                            shift and go to state 18
+    goto                           shift and go to state 19
+    var                            shift and go to state 22
+    register                       shift and go to state 26
+
+state 6
+
+    (4) program -> main labels .
+    (7) labels -> labels . label
+    (9) label -> . LABEL DOS_PUNTOS instructions
+    (10) label -> . error instructions
+
+    $end            reduce using rule 4 (program -> main labels .)
+    LABEL           shift and go to state 8
+    error           shift and go to state 9
+
+    label                          shift and go to state 33
+
+state 7
+
+    (8) labels -> label .
+
+    LABEL           reduce using rule 8 (labels -> label .)
+    error           reduce using rule 8 (labels -> label .)
+    $end            reduce using rule 8 (labels -> label .)
+
+
+state 8
+
+    (9) label -> LABEL . DOS_PUNTOS instructions
+
+    DOS_PUNTOS      shift and go to state 34
+
+
+state 9
+
+    (10) label -> error . instructions
+    (11) instructions -> . instructions instruction
+    (12) instructions -> . instruction
+    (13) instruction -> . exit PUNTO_COMA
+    (14) instruction -> . unset PUNTO_COMA
+    (15) instruction -> . print PUNTO_COMA
+    (16) instruction -> . if PUNTO_COMA
+    (17) instruction -> . set PUNTO_COMA
+    (18) instruction -> . goto PUNTO_COMA
+    (19) instruction -> . error PUNTO_COMA
+    (20) exit -> . EXIT
+    (22) unset -> . UNSET PAR_IZQ var PAR_DER
+    (23) print -> . PRINT PAR_IZQ var PAR_DER
+    (24) if -> . IF PAR_IZQ condition PAR_DER goto
+    (27) set -> . var IGUAL assignation
+    (21) goto -> . GOTO LABEL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    error           shift and go to state 11
+    EXIT            shift and go to state 20
+    UNSET           shift and go to state 21
+    PRINT           shift and go to state 23
+    IF              shift and go to state 24
+    GOTO            shift and go to state 25
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    instructions                   shift and go to state 35
+    instruction                    shift and go to state 13
+    exit                           shift and go to state 14
+    unset                          shift and go to state 15
+    print                          shift and go to state 16
+    if                             shift and go to state 17
+    set                            shift and go to state 18
+    goto                           shift and go to state 19
+    var                            shift and go to state 22
+    register                       shift and go to state 26
+
+state 10
+
+    (5) main -> MAIN DOS_PUNTOS . instructions
+    (11) instructions -> . instructions instruction
+    (12) instructions -> . instruction
+    (13) instruction -> . exit PUNTO_COMA
+    (14) instruction -> . unset PUNTO_COMA
+    (15) instruction -> . print PUNTO_COMA
+    (16) instruction -> . if PUNTO_COMA
+    (17) instruction -> . set PUNTO_COMA
+    (18) instruction -> . goto PUNTO_COMA
+    (19) instruction -> . error PUNTO_COMA
+    (20) exit -> . EXIT
+    (22) unset -> . UNSET PAR_IZQ var PAR_DER
+    (23) print -> . PRINT PAR_IZQ var PAR_DER
+    (24) if -> . IF PAR_IZQ condition PAR_DER goto
+    (27) set -> . var IGUAL assignation
+    (21) goto -> . GOTO LABEL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    error           shift and go to state 11
+    EXIT            shift and go to state 20
+    UNSET           shift and go to state 21
+    PRINT           shift and go to state 23
+    IF              shift and go to state 24
+    GOTO            shift and go to state 25
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    instructions                   shift and go to state 36
+    instruction                    shift and go to state 13
+    exit                           shift and go to state 14
+    unset                          shift and go to state 15
+    print                          shift and go to state 16
+    if                             shift and go to state 17
+    set                            shift and go to state 18
+    goto                           shift and go to state 19
+    var                            shift and go to state 22
+    register                       shift and go to state 26
+
+state 11
+
+    (19) instruction -> error . PUNTO_COMA
+
+    PUNTO_COMA      shift and go to state 37
+
+
+state 12
+
+    (6) main -> error instructions .
+    (11) instructions -> instructions . instruction
+    (13) instruction -> . exit PUNTO_COMA
+    (14) instruction -> . unset PUNTO_COMA
+    (15) instruction -> . print PUNTO_COMA
+    (16) instruction -> . if PUNTO_COMA
+    (17) instruction -> . set PUNTO_COMA
+    (18) instruction -> . goto PUNTO_COMA
+    (19) instruction -> . error PUNTO_COMA
+    (20) exit -> . EXIT
+    (22) unset -> . UNSET PAR_IZQ var PAR_DER
+    (23) print -> . PRINT PAR_IZQ var PAR_DER
+    (24) if -> . IF PAR_IZQ condition PAR_DER goto
+    (27) set -> . var IGUAL assignation
+    (21) goto -> . GOTO LABEL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+  ! shift/reduce conflict for error resolved as shift
+    LABEL           reduce using rule 6 (main -> error instructions .)
+    $end            reduce using rule 6 (main -> error instructions .)
+    error           shift and go to state 11
+    EXIT            shift and go to state 20
+    UNSET           shift and go to state 21
+    PRINT           shift and go to state 23
+    IF              shift and go to state 24
+    GOTO            shift and go to state 25
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+  ! error           [ reduce using rule 6 (main -> error instructions .) ]
+
+    instruction                    shift and go to state 38
+    exit                           shift and go to state 14
+    unset                          shift and go to state 15
+    print                          shift and go to state 16
+    if                             shift and go to state 17
+    set                            shift and go to state 18
+    goto                           shift and go to state 19
+    var                            shift and go to state 22
+    register                       shift and go to state 26
+
+state 13
+
+    (12) instructions -> instruction .
+
+    error           reduce using rule 12 (instructions -> instruction .)
+    EXIT            reduce using rule 12 (instructions -> instruction .)
+    UNSET           reduce using rule 12 (instructions -> instruction .)
+    PRINT           reduce using rule 12 (instructions -> instruction .)
+    IF              reduce using rule 12 (instructions -> instruction .)
+    GOTO            reduce using rule 12 (instructions -> instruction .)
+    TEMPORAL        reduce using rule 12 (instructions -> instruction .)
+    PARAMETRO       reduce using rule 12 (instructions -> instruction .)
+    DEVUELTO        reduce using rule 12 (instructions -> instruction .)
+    RETORNO         reduce using rule 12 (instructions -> instruction .)
+    PILA            reduce using rule 12 (instructions -> instruction .)
+    PUNTERO         reduce using rule 12 (instructions -> instruction .)
+    LABEL           reduce using rule 12 (instructions -> instruction .)
+    $end            reduce using rule 12 (instructions -> instruction .)
+
+
+state 14
+
+    (13) instruction -> exit . PUNTO_COMA
+
+    PUNTO_COMA      shift and go to state 39
+
+
+state 15
+
+    (14) instruction -> unset . PUNTO_COMA
+
+    PUNTO_COMA      shift and go to state 40
+
+
+state 16
+
+    (15) instruction -> print . PUNTO_COMA
+
+    PUNTO_COMA      shift and go to state 41
+
+
+state 17
+
+    (16) instruction -> if . PUNTO_COMA
+
+    PUNTO_COMA      shift and go to state 42
+
+
+state 18
+
+    (17) instruction -> set . PUNTO_COMA
+
+    PUNTO_COMA      shift and go to state 43
+
+
+state 19
+
+    (18) instruction -> goto . PUNTO_COMA
+
+    PUNTO_COMA      shift and go to state 44
+
+
+state 20
+
+    (20) exit -> EXIT .
+
+    PUNTO_COMA      reduce using rule 20 (exit -> EXIT .)
+
+
+state 21
+
+    (22) unset -> UNSET . PAR_IZQ var PAR_DER
+
+    PAR_IZQ         shift and go to state 45
+
+
+state 22
+
+    (27) set -> var . IGUAL assignation
+
+    IGUAL           shift and go to state 46
+
+
+state 23
+
+    (23) print -> PRINT . PAR_IZQ var PAR_DER
+
+    PAR_IZQ         shift and go to state 47
+
+
+state 24
+
+    (24) if -> IF . PAR_IZQ condition PAR_DER goto
+
+    PAR_IZQ         shift and go to state 48
+
+
+state 25
+
+    (21) goto -> GOTO . LABEL
+
+    LABEL           shift and go to state 49
+
+
+state 26
+
+    (28) var -> register .
+    (29) var -> register . positions
+    (36) positions -> . positions position
+    (37) positions -> . position
+    (38) position -> . COR_IZQ cont COR_DER
+
+    IGUAL           reduce using rule 28 (var -> register .)
+    PAR_DER         reduce using rule 28 (var -> register .)
+    SUMA            reduce using rule 28 (var -> register .)
+    RESTA           reduce using rule 28 (var -> register .)
+    MULT            reduce using rule 28 (var -> register .)
+    DIV             reduce using rule 28 (var -> register .)
+    MOD             reduce using rule 28 (var -> register .)
+    AND             reduce using rule 28 (var -> register .)
+    OR              reduce using rule 28 (var -> register .)
+    XOR             reduce using rule 28 (var -> register .)
+    AND_BIT         reduce using rule 28 (var -> register .)
+    OR_BIT          reduce using rule 28 (var -> register .)
+    XOR_BIT         reduce using rule 28 (var -> register .)
+    SHIFT_DER       reduce using rule 28 (var -> register .)
+    SHIFT_IZQ       reduce using rule 28 (var -> register .)
+    ES_IGUAL        reduce using rule 28 (var -> register .)
+    NO_IGUAL        reduce using rule 28 (var -> register .)
+    MAYOR           reduce using rule 28 (var -> register .)
+    MENOR           reduce using rule 28 (var -> register .)
+    MAYOR_IGUAL     reduce using rule 28 (var -> register .)
+    MENOR_IGUAL     reduce using rule 28 (var -> register .)
+    PUNTO_COMA      reduce using rule 28 (var -> register .)
+    COR_IZQ         shift and go to state 52
+
+    positions                      shift and go to state 50
+    position                       shift and go to state 51
+
+state 27
+
+    (30) register -> TEMPORAL .
+
+    COR_IZQ         reduce using rule 30 (register -> TEMPORAL .)
+    IGUAL           reduce using rule 30 (register -> TEMPORAL .)
+    PAR_DER         reduce using rule 30 (register -> TEMPORAL .)
+    SUMA            reduce using rule 30 (register -> TEMPORAL .)
+    RESTA           reduce using rule 30 (register -> TEMPORAL .)
+    MULT            reduce using rule 30 (register -> TEMPORAL .)
+    DIV             reduce using rule 30 (register -> TEMPORAL .)
+    MOD             reduce using rule 30 (register -> TEMPORAL .)
+    AND             reduce using rule 30 (register -> TEMPORAL .)
+    OR              reduce using rule 30 (register -> TEMPORAL .)
+    XOR             reduce using rule 30 (register -> TEMPORAL .)
+    AND_BIT         reduce using rule 30 (register -> TEMPORAL .)
+    OR_BIT          reduce using rule 30 (register -> TEMPORAL .)
+    XOR_BIT         reduce using rule 30 (register -> TEMPORAL .)
+    SHIFT_DER       reduce using rule 30 (register -> TEMPORAL .)
+    SHIFT_IZQ       reduce using rule 30 (register -> TEMPORAL .)
+    ES_IGUAL        reduce using rule 30 (register -> TEMPORAL .)
+    NO_IGUAL        reduce using rule 30 (register -> TEMPORAL .)
+    MAYOR           reduce using rule 30 (register -> TEMPORAL .)
+    MENOR           reduce using rule 30 (register -> TEMPORAL .)
+    MAYOR_IGUAL     reduce using rule 30 (register -> TEMPORAL .)
+    MENOR_IGUAL     reduce using rule 30 (register -> TEMPORAL .)
+    PUNTO_COMA      reduce using rule 30 (register -> TEMPORAL .)
+    COR_DER         reduce using rule 30 (register -> TEMPORAL .)
+
+
+state 28
+
+    (31) register -> PARAMETRO .
+
+    COR_IZQ         reduce using rule 31 (register -> PARAMETRO .)
+    IGUAL           reduce using rule 31 (register -> PARAMETRO .)
+    PAR_DER         reduce using rule 31 (register -> PARAMETRO .)
+    SUMA            reduce using rule 31 (register -> PARAMETRO .)
+    RESTA           reduce using rule 31 (register -> PARAMETRO .)
+    MULT            reduce using rule 31 (register -> PARAMETRO .)
+    DIV             reduce using rule 31 (register -> PARAMETRO .)
+    MOD             reduce using rule 31 (register -> PARAMETRO .)
+    AND             reduce using rule 31 (register -> PARAMETRO .)
+    OR              reduce using rule 31 (register -> PARAMETRO .)
+    XOR             reduce using rule 31 (register -> PARAMETRO .)
+    AND_BIT         reduce using rule 31 (register -> PARAMETRO .)
+    OR_BIT          reduce using rule 31 (register -> PARAMETRO .)
+    XOR_BIT         reduce using rule 31 (register -> PARAMETRO .)
+    SHIFT_DER       reduce using rule 31 (register -> PARAMETRO .)
+    SHIFT_IZQ       reduce using rule 31 (register -> PARAMETRO .)
+    ES_IGUAL        reduce using rule 31 (register -> PARAMETRO .)
+    NO_IGUAL        reduce using rule 31 (register -> PARAMETRO .)
+    MAYOR           reduce using rule 31 (register -> PARAMETRO .)
+    MENOR           reduce using rule 31 (register -> PARAMETRO .)
+    MAYOR_IGUAL     reduce using rule 31 (register -> PARAMETRO .)
+    MENOR_IGUAL     reduce using rule 31 (register -> PARAMETRO .)
+    PUNTO_COMA      reduce using rule 31 (register -> PARAMETRO .)
+    COR_DER         reduce using rule 31 (register -> PARAMETRO .)
+
+
+state 29
+
+    (32) register -> DEVUELTO .
+
+    COR_IZQ         reduce using rule 32 (register -> DEVUELTO .)
+    IGUAL           reduce using rule 32 (register -> DEVUELTO .)
+    PAR_DER         reduce using rule 32 (register -> DEVUELTO .)
+    SUMA            reduce using rule 32 (register -> DEVUELTO .)
+    RESTA           reduce using rule 32 (register -> DEVUELTO .)
+    MULT            reduce using rule 32 (register -> DEVUELTO .)
+    DIV             reduce using rule 32 (register -> DEVUELTO .)
+    MOD             reduce using rule 32 (register -> DEVUELTO .)
+    AND             reduce using rule 32 (register -> DEVUELTO .)
+    OR              reduce using rule 32 (register -> DEVUELTO .)
+    XOR             reduce using rule 32 (register -> DEVUELTO .)
+    AND_BIT         reduce using rule 32 (register -> DEVUELTO .)
+    OR_BIT          reduce using rule 32 (register -> DEVUELTO .)
+    XOR_BIT         reduce using rule 32 (register -> DEVUELTO .)
+    SHIFT_DER       reduce using rule 32 (register -> DEVUELTO .)
+    SHIFT_IZQ       reduce using rule 32 (register -> DEVUELTO .)
+    ES_IGUAL        reduce using rule 32 (register -> DEVUELTO .)
+    NO_IGUAL        reduce using rule 32 (register -> DEVUELTO .)
+    MAYOR           reduce using rule 32 (register -> DEVUELTO .)
+    MENOR           reduce using rule 32 (register -> DEVUELTO .)
+    MAYOR_IGUAL     reduce using rule 32 (register -> DEVUELTO .)
+    MENOR_IGUAL     reduce using rule 32 (register -> DEVUELTO .)
+    PUNTO_COMA      reduce using rule 32 (register -> DEVUELTO .)
+    COR_DER         reduce using rule 32 (register -> DEVUELTO .)
+
+
+state 30
+
+    (33) register -> RETORNO .
+
+    COR_IZQ         reduce using rule 33 (register -> RETORNO .)
+    IGUAL           reduce using rule 33 (register -> RETORNO .)
+    PAR_DER         reduce using rule 33 (register -> RETORNO .)
+    SUMA            reduce using rule 33 (register -> RETORNO .)
+    RESTA           reduce using rule 33 (register -> RETORNO .)
+    MULT            reduce using rule 33 (register -> RETORNO .)
+    DIV             reduce using rule 33 (register -> RETORNO .)
+    MOD             reduce using rule 33 (register -> RETORNO .)
+    AND             reduce using rule 33 (register -> RETORNO .)
+    OR              reduce using rule 33 (register -> RETORNO .)
+    XOR             reduce using rule 33 (register -> RETORNO .)
+    AND_BIT         reduce using rule 33 (register -> RETORNO .)
+    OR_BIT          reduce using rule 33 (register -> RETORNO .)
+    XOR_BIT         reduce using rule 33 (register -> RETORNO .)
+    SHIFT_DER       reduce using rule 33 (register -> RETORNO .)
+    SHIFT_IZQ       reduce using rule 33 (register -> RETORNO .)
+    ES_IGUAL        reduce using rule 33 (register -> RETORNO .)
+    NO_IGUAL        reduce using rule 33 (register -> RETORNO .)
+    MAYOR           reduce using rule 33 (register -> RETORNO .)
+    MENOR           reduce using rule 33 (register -> RETORNO .)
+    MAYOR_IGUAL     reduce using rule 33 (register -> RETORNO .)
+    MENOR_IGUAL     reduce using rule 33 (register -> RETORNO .)
+    PUNTO_COMA      reduce using rule 33 (register -> RETORNO .)
+    COR_DER         reduce using rule 33 (register -> RETORNO .)
+
+
+state 31
+
+    (34) register -> PILA .
+
+    COR_IZQ         reduce using rule 34 (register -> PILA .)
+    IGUAL           reduce using rule 34 (register -> PILA .)
+    PAR_DER         reduce using rule 34 (register -> PILA .)
+    SUMA            reduce using rule 34 (register -> PILA .)
+    RESTA           reduce using rule 34 (register -> PILA .)
+    MULT            reduce using rule 34 (register -> PILA .)
+    DIV             reduce using rule 34 (register -> PILA .)
+    MOD             reduce using rule 34 (register -> PILA .)
+    AND             reduce using rule 34 (register -> PILA .)
+    OR              reduce using rule 34 (register -> PILA .)
+    XOR             reduce using rule 34 (register -> PILA .)
+    AND_BIT         reduce using rule 34 (register -> PILA .)
+    OR_BIT          reduce using rule 34 (register -> PILA .)
+    XOR_BIT         reduce using rule 34 (register -> PILA .)
+    SHIFT_DER       reduce using rule 34 (register -> PILA .)
+    SHIFT_IZQ       reduce using rule 34 (register -> PILA .)
+    ES_IGUAL        reduce using rule 34 (register -> PILA .)
+    NO_IGUAL        reduce using rule 34 (register -> PILA .)
+    MAYOR           reduce using rule 34 (register -> PILA .)
+    MENOR           reduce using rule 34 (register -> PILA .)
+    MAYOR_IGUAL     reduce using rule 34 (register -> PILA .)
+    MENOR_IGUAL     reduce using rule 34 (register -> PILA .)
+    PUNTO_COMA      reduce using rule 34 (register -> PILA .)
+    COR_DER         reduce using rule 34 (register -> PILA .)
+
+
+state 32
+
+    (35) register -> PUNTERO .
+
+    COR_IZQ         reduce using rule 35 (register -> PUNTERO .)
+    IGUAL           reduce using rule 35 (register -> PUNTERO .)
+    PAR_DER         reduce using rule 35 (register -> PUNTERO .)
+    SUMA            reduce using rule 35 (register -> PUNTERO .)
+    RESTA           reduce using rule 35 (register -> PUNTERO .)
+    MULT            reduce using rule 35 (register -> PUNTERO .)
+    DIV             reduce using rule 35 (register -> PUNTERO .)
+    MOD             reduce using rule 35 (register -> PUNTERO .)
+    AND             reduce using rule 35 (register -> PUNTERO .)
+    OR              reduce using rule 35 (register -> PUNTERO .)
+    XOR             reduce using rule 35 (register -> PUNTERO .)
+    AND_BIT         reduce using rule 35 (register -> PUNTERO .)
+    OR_BIT          reduce using rule 35 (register -> PUNTERO .)
+    XOR_BIT         reduce using rule 35 (register -> PUNTERO .)
+    SHIFT_DER       reduce using rule 35 (register -> PUNTERO .)
+    SHIFT_IZQ       reduce using rule 35 (register -> PUNTERO .)
+    ES_IGUAL        reduce using rule 35 (register -> PUNTERO .)
+    NO_IGUAL        reduce using rule 35 (register -> PUNTERO .)
+    MAYOR           reduce using rule 35 (register -> PUNTERO .)
+    MENOR           reduce using rule 35 (register -> PUNTERO .)
+    MAYOR_IGUAL     reduce using rule 35 (register -> PUNTERO .)
+    MENOR_IGUAL     reduce using rule 35 (register -> PUNTERO .)
+    PUNTO_COMA      reduce using rule 35 (register -> PUNTERO .)
+    COR_DER         reduce using rule 35 (register -> PUNTERO .)
+
+
+state 33
+
+    (7) labels -> labels label .
+
+    LABEL           reduce using rule 7 (labels -> labels label .)
+    error           reduce using rule 7 (labels -> labels label .)
+    $end            reduce using rule 7 (labels -> labels label .)
+
+
+state 34
+
+    (9) label -> LABEL DOS_PUNTOS . instructions
+    (11) instructions -> . instructions instruction
+    (12) instructions -> . instruction
+    (13) instruction -> . exit PUNTO_COMA
+    (14) instruction -> . unset PUNTO_COMA
+    (15) instruction -> . print PUNTO_COMA
+    (16) instruction -> . if PUNTO_COMA
+    (17) instruction -> . set PUNTO_COMA
+    (18) instruction -> . goto PUNTO_COMA
+    (19) instruction -> . error PUNTO_COMA
+    (20) exit -> . EXIT
+    (22) unset -> . UNSET PAR_IZQ var PAR_DER
+    (23) print -> . PRINT PAR_IZQ var PAR_DER
+    (24) if -> . IF PAR_IZQ condition PAR_DER goto
+    (27) set -> . var IGUAL assignation
+    (21) goto -> . GOTO LABEL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    error           shift and go to state 11
+    EXIT            shift and go to state 20
+    UNSET           shift and go to state 21
+    PRINT           shift and go to state 23
+    IF              shift and go to state 24
+    GOTO            shift and go to state 25
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    instructions                   shift and go to state 53
+    instruction                    shift and go to state 13
+    exit                           shift and go to state 14
+    unset                          shift and go to state 15
+    print                          shift and go to state 16
+    if                             shift and go to state 17
+    set                            shift and go to state 18
+    goto                           shift and go to state 19
+    var                            shift and go to state 22
+    register                       shift and go to state 26
+
+state 35
+
+    (10) label -> error instructions .
+    (11) instructions -> instructions . instruction
+    (13) instruction -> . exit PUNTO_COMA
+    (14) instruction -> . unset PUNTO_COMA
+    (15) instruction -> . print PUNTO_COMA
+    (16) instruction -> . if PUNTO_COMA
+    (17) instruction -> . set PUNTO_COMA
+    (18) instruction -> . goto PUNTO_COMA
+    (19) instruction -> . error PUNTO_COMA
+    (20) exit -> . EXIT
+    (22) unset -> . UNSET PAR_IZQ var PAR_DER
+    (23) print -> . PRINT PAR_IZQ var PAR_DER
+    (24) if -> . IF PAR_IZQ condition PAR_DER goto
+    (27) set -> . var IGUAL assignation
+    (21) goto -> . GOTO LABEL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+  ! shift/reduce conflict for error resolved as shift
+    LABEL           reduce using rule 10 (label -> error instructions .)
+    $end            reduce using rule 10 (label -> error instructions .)
+    error           shift and go to state 11
+    EXIT            shift and go to state 20
+    UNSET           shift and go to state 21
+    PRINT           shift and go to state 23
+    IF              shift and go to state 24
+    GOTO            shift and go to state 25
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+  ! error           [ reduce using rule 10 (label -> error instructions .) ]
+
+    instruction                    shift and go to state 38
+    exit                           shift and go to state 14
+    unset                          shift and go to state 15
+    print                          shift and go to state 16
+    if                             shift and go to state 17
+    set                            shift and go to state 18
+    goto                           shift and go to state 19
+    var                            shift and go to state 22
+    register                       shift and go to state 26
+
+state 36
+
+    (5) main -> MAIN DOS_PUNTOS instructions .
+    (11) instructions -> instructions . instruction
+    (13) instruction -> . exit PUNTO_COMA
+    (14) instruction -> . unset PUNTO_COMA
+    (15) instruction -> . print PUNTO_COMA
+    (16) instruction -> . if PUNTO_COMA
+    (17) instruction -> . set PUNTO_COMA
+    (18) instruction -> . goto PUNTO_COMA
+    (19) instruction -> . error PUNTO_COMA
+    (20) exit -> . EXIT
+    (22) unset -> . UNSET PAR_IZQ var PAR_DER
+    (23) print -> . PRINT PAR_IZQ var PAR_DER
+    (24) if -> . IF PAR_IZQ condition PAR_DER goto
+    (27) set -> . var IGUAL assignation
+    (21) goto -> . GOTO LABEL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+  ! shift/reduce conflict for error resolved as shift
+    LABEL           reduce using rule 5 (main -> MAIN DOS_PUNTOS instructions .)
+    $end            reduce using rule 5 (main -> MAIN DOS_PUNTOS instructions .)
+    error           shift and go to state 11
+    EXIT            shift and go to state 20
+    UNSET           shift and go to state 21
+    PRINT           shift and go to state 23
+    IF              shift and go to state 24
+    GOTO            shift and go to state 25
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+  ! error           [ reduce using rule 5 (main -> MAIN DOS_PUNTOS instructions .) ]
+
+    instruction                    shift and go to state 38
+    exit                           shift and go to state 14
+    unset                          shift and go to state 15
+    print                          shift and go to state 16
+    if                             shift and go to state 17
+    set                            shift and go to state 18
+    goto                           shift and go to state 19
+    var                            shift and go to state 22
+    register                       shift and go to state 26
+
+state 37
+
+    (19) instruction -> error PUNTO_COMA .
+
+    error           reduce using rule 19 (instruction -> error PUNTO_COMA .)
+    EXIT            reduce using rule 19 (instruction -> error PUNTO_COMA .)
+    UNSET           reduce using rule 19 (instruction -> error PUNTO_COMA .)
+    PRINT           reduce using rule 19 (instruction -> error PUNTO_COMA .)
+    IF              reduce using rule 19 (instruction -> error PUNTO_COMA .)
+    GOTO            reduce using rule 19 (instruction -> error PUNTO_COMA .)
+    TEMPORAL        reduce using rule 19 (instruction -> error PUNTO_COMA .)
+    PARAMETRO       reduce using rule 19 (instruction -> error PUNTO_COMA .)
+    DEVUELTO        reduce using rule 19 (instruction -> error PUNTO_COMA .)
+    RETORNO         reduce using rule 19 (instruction -> error PUNTO_COMA .)
+    PILA            reduce using rule 19 (instruction -> error PUNTO_COMA .)
+    PUNTERO         reduce using rule 19 (instruction -> error PUNTO_COMA .)
+    LABEL           reduce using rule 19 (instruction -> error PUNTO_COMA .)
+    $end            reduce using rule 19 (instruction -> error PUNTO_COMA .)
+
+
+state 38
+
+    (11) instructions -> instructions instruction .
+
+    error           reduce using rule 11 (instructions -> instructions instruction .)
+    EXIT            reduce using rule 11 (instructions -> instructions instruction .)
+    UNSET           reduce using rule 11 (instructions -> instructions instruction .)
+    PRINT           reduce using rule 11 (instructions -> instructions instruction .)
+    IF              reduce using rule 11 (instructions -> instructions instruction .)
+    GOTO            reduce using rule 11 (instructions -> instructions instruction .)
+    TEMPORAL        reduce using rule 11 (instructions -> instructions instruction .)
+    PARAMETRO       reduce using rule 11 (instructions -> instructions instruction .)
+    DEVUELTO        reduce using rule 11 (instructions -> instructions instruction .)
+    RETORNO         reduce using rule 11 (instructions -> instructions instruction .)
+    PILA            reduce using rule 11 (instructions -> instructions instruction .)
+    PUNTERO         reduce using rule 11 (instructions -> instructions instruction .)
+    LABEL           reduce using rule 11 (instructions -> instructions instruction .)
+    $end            reduce using rule 11 (instructions -> instructions instruction .)
+
+
+state 39
+
+    (13) instruction -> exit PUNTO_COMA .
+
+    error           reduce using rule 13 (instruction -> exit PUNTO_COMA .)
+    EXIT            reduce using rule 13 (instruction -> exit PUNTO_COMA .)
+    UNSET           reduce using rule 13 (instruction -> exit PUNTO_COMA .)
+    PRINT           reduce using rule 13 (instruction -> exit PUNTO_COMA .)
+    IF              reduce using rule 13 (instruction -> exit PUNTO_COMA .)
+    GOTO            reduce using rule 13 (instruction -> exit PUNTO_COMA .)
+    TEMPORAL        reduce using rule 13 (instruction -> exit PUNTO_COMA .)
+    PARAMETRO       reduce using rule 13 (instruction -> exit PUNTO_COMA .)
+    DEVUELTO        reduce using rule 13 (instruction -> exit PUNTO_COMA .)
+    RETORNO         reduce using rule 13 (instruction -> exit PUNTO_COMA .)
+    PILA            reduce using rule 13 (instruction -> exit PUNTO_COMA .)
+    PUNTERO         reduce using rule 13 (instruction -> exit PUNTO_COMA .)
+    LABEL           reduce using rule 13 (instruction -> exit PUNTO_COMA .)
+    $end            reduce using rule 13 (instruction -> exit PUNTO_COMA .)
+
+
+state 40
+
+    (14) instruction -> unset PUNTO_COMA .
+
+    error           reduce using rule 14 (instruction -> unset PUNTO_COMA .)
+    EXIT            reduce using rule 14 (instruction -> unset PUNTO_COMA .)
+    UNSET           reduce using rule 14 (instruction -> unset PUNTO_COMA .)
+    PRINT           reduce using rule 14 (instruction -> unset PUNTO_COMA .)
+    IF              reduce using rule 14 (instruction -> unset PUNTO_COMA .)
+    GOTO            reduce using rule 14 (instruction -> unset PUNTO_COMA .)
+    TEMPORAL        reduce using rule 14 (instruction -> unset PUNTO_COMA .)
+    PARAMETRO       reduce using rule 14 (instruction -> unset PUNTO_COMA .)
+    DEVUELTO        reduce using rule 14 (instruction -> unset PUNTO_COMA .)
+    RETORNO         reduce using rule 14 (instruction -> unset PUNTO_COMA .)
+    PILA            reduce using rule 14 (instruction -> unset PUNTO_COMA .)
+    PUNTERO         reduce using rule 14 (instruction -> unset PUNTO_COMA .)
+    LABEL           reduce using rule 14 (instruction -> unset PUNTO_COMA .)
+    $end            reduce using rule 14 (instruction -> unset PUNTO_COMA .)
+
+
+state 41
+
+    (15) instruction -> print PUNTO_COMA .
+
+    error           reduce using rule 15 (instruction -> print PUNTO_COMA .)
+    EXIT            reduce using rule 15 (instruction -> print PUNTO_COMA .)
+    UNSET           reduce using rule 15 (instruction -> print PUNTO_COMA .)
+    PRINT           reduce using rule 15 (instruction -> print PUNTO_COMA .)
+    IF              reduce using rule 15 (instruction -> print PUNTO_COMA .)
+    GOTO            reduce using rule 15 (instruction -> print PUNTO_COMA .)
+    TEMPORAL        reduce using rule 15 (instruction -> print PUNTO_COMA .)
+    PARAMETRO       reduce using rule 15 (instruction -> print PUNTO_COMA .)
+    DEVUELTO        reduce using rule 15 (instruction -> print PUNTO_COMA .)
+    RETORNO         reduce using rule 15 (instruction -> print PUNTO_COMA .)
+    PILA            reduce using rule 15 (instruction -> print PUNTO_COMA .)
+    PUNTERO         reduce using rule 15 (instruction -> print PUNTO_COMA .)
+    LABEL           reduce using rule 15 (instruction -> print PUNTO_COMA .)
+    $end            reduce using rule 15 (instruction -> print PUNTO_COMA .)
+
+
+state 42
+
+    (16) instruction -> if PUNTO_COMA .
+
+    error           reduce using rule 16 (instruction -> if PUNTO_COMA .)
+    EXIT            reduce using rule 16 (instruction -> if PUNTO_COMA .)
+    UNSET           reduce using rule 16 (instruction -> if PUNTO_COMA .)
+    PRINT           reduce using rule 16 (instruction -> if PUNTO_COMA .)
+    IF              reduce using rule 16 (instruction -> if PUNTO_COMA .)
+    GOTO            reduce using rule 16 (instruction -> if PUNTO_COMA .)
+    TEMPORAL        reduce using rule 16 (instruction -> if PUNTO_COMA .)
+    PARAMETRO       reduce using rule 16 (instruction -> if PUNTO_COMA .)
+    DEVUELTO        reduce using rule 16 (instruction -> if PUNTO_COMA .)
+    RETORNO         reduce using rule 16 (instruction -> if PUNTO_COMA .)
+    PILA            reduce using rule 16 (instruction -> if PUNTO_COMA .)
+    PUNTERO         reduce using rule 16 (instruction -> if PUNTO_COMA .)
+    LABEL           reduce using rule 16 (instruction -> if PUNTO_COMA .)
+    $end            reduce using rule 16 (instruction -> if PUNTO_COMA .)
+
+
+state 43
+
+    (17) instruction -> set PUNTO_COMA .
+
+    error           reduce using rule 17 (instruction -> set PUNTO_COMA .)
+    EXIT            reduce using rule 17 (instruction -> set PUNTO_COMA .)
+    UNSET           reduce using rule 17 (instruction -> set PUNTO_COMA .)
+    PRINT           reduce using rule 17 (instruction -> set PUNTO_COMA .)
+    IF              reduce using rule 17 (instruction -> set PUNTO_COMA .)
+    GOTO            reduce using rule 17 (instruction -> set PUNTO_COMA .)
+    TEMPORAL        reduce using rule 17 (instruction -> set PUNTO_COMA .)
+    PARAMETRO       reduce using rule 17 (instruction -> set PUNTO_COMA .)
+    DEVUELTO        reduce using rule 17 (instruction -> set PUNTO_COMA .)
+    RETORNO         reduce using rule 17 (instruction -> set PUNTO_COMA .)
+    PILA            reduce using rule 17 (instruction -> set PUNTO_COMA .)
+    PUNTERO         reduce using rule 17 (instruction -> set PUNTO_COMA .)
+    LABEL           reduce using rule 17 (instruction -> set PUNTO_COMA .)
+    $end            reduce using rule 17 (instruction -> set PUNTO_COMA .)
+
+
+state 44
+
+    (18) instruction -> goto PUNTO_COMA .
+
+    error           reduce using rule 18 (instruction -> goto PUNTO_COMA .)
+    EXIT            reduce using rule 18 (instruction -> goto PUNTO_COMA .)
+    UNSET           reduce using rule 18 (instruction -> goto PUNTO_COMA .)
+    PRINT           reduce using rule 18 (instruction -> goto PUNTO_COMA .)
+    IF              reduce using rule 18 (instruction -> goto PUNTO_COMA .)
+    GOTO            reduce using rule 18 (instruction -> goto PUNTO_COMA .)
+    TEMPORAL        reduce using rule 18 (instruction -> goto PUNTO_COMA .)
+    PARAMETRO       reduce using rule 18 (instruction -> goto PUNTO_COMA .)
+    DEVUELTO        reduce using rule 18 (instruction -> goto PUNTO_COMA .)
+    RETORNO         reduce using rule 18 (instruction -> goto PUNTO_COMA .)
+    PILA            reduce using rule 18 (instruction -> goto PUNTO_COMA .)
+    PUNTERO         reduce using rule 18 (instruction -> goto PUNTO_COMA .)
+    LABEL           reduce using rule 18 (instruction -> goto PUNTO_COMA .)
+    $end            reduce using rule 18 (instruction -> goto PUNTO_COMA .)
+
+
+state 45
+
+    (22) unset -> UNSET PAR_IZQ . var PAR_DER
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    var                            shift and go to state 54
+    register                       shift and go to state 26
+
+state 46
+
+    (27) set -> var IGUAL . assignation
+    (43) assignation -> . data
+    (44) assignation -> . array
+    (45) assignation -> . read
+    (46) assignation -> . cast
+    (47) assignation -> . expression
+    (48) assignation -> . pointer
+    (49) data -> . primary
+    (50) data -> . var
+    (53) array -> . ARRAY PAR_IZQ PAR_DER
+    (54) read -> . READ PAR_IZQ PAR_DER
+    (55) cast -> . PAR_IZQ type PAR_DER var
+    (59) expression -> . aritmetic
+    (60) expression -> . logical
+    (61) expression -> . bitxbit
+    (62) expression -> . ralational
+    (86) pointer -> . AND_BIT var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (63) aritmetic -> . data SUMA data
+    (64) aritmetic -> . data RESTA data
+    (65) aritmetic -> . data MULT data
+    (66) aritmetic -> . data DIV data
+    (67) aritmetic -> . data MOD data
+    (68) aritmetic -> . RESTA data
+    (69) aritmetic -> . ABS PAR_IZQ data PAR_DER
+    (70) logical -> . data AND data
+    (71) logical -> . data OR data
+    (72) logical -> . data XOR data
+    (73) logical -> . NOT data
+    (74) bitxbit -> . data AND_BIT data
+    (75) bitxbit -> . data OR_BIT data
+    (76) bitxbit -> . data XOR_BIT data
+    (77) bitxbit -> . data SHIFT_DER data
+    (78) bitxbit -> . data SHIFT_IZQ data
+    (79) bitxbit -> . NOT_BIT data
+    (80) ralational -> . data ES_IGUAL data
+    (81) ralational -> . data NO_IGUAL data
+    (82) ralational -> . data MAYOR data
+    (83) ralational -> . data MENOR data
+    (84) ralational -> . data MAYOR_IGUAL data
+    (85) ralational -> . data MENOR_IGUAL data
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ARRAY           shift and go to state 64
+    READ            shift and go to state 66
+    PAR_IZQ         shift and go to state 65
+    AND_BIT         shift and go to state 71
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    RESTA           shift and go to state 76
+    ABS             shift and go to state 77
+    NOT             shift and go to state 78
+    NOT_BIT         shift and go to state 79
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    var                            shift and go to state 55
+    assignation                    shift and go to state 56
+    data                           shift and go to state 57
+    array                          shift and go to state 58
+    read                           shift and go to state 59
+    cast                           shift and go to state 60
+    expression                     shift and go to state 61
+    pointer                        shift and go to state 62
+    primary                        shift and go to state 63
+    aritmetic                      shift and go to state 67
+    logical                        shift and go to state 68
+    bitxbit                        shift and go to state 69
+    ralational                     shift and go to state 70
+    register                       shift and go to state 26
+
+state 47
+
+    (23) print -> PRINT PAR_IZQ . var PAR_DER
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    var                            shift and go to state 80
+    register                       shift and go to state 26
+
+state 48
+
+    (24) if -> IF PAR_IZQ . condition PAR_DER goto
+    (25) condition -> . expression
+    (26) condition -> . var
+    (59) expression -> . aritmetic
+    (60) expression -> . logical
+    (61) expression -> . bitxbit
+    (62) expression -> . ralational
+    (28) var -> . register
+    (29) var -> . register positions
+    (63) aritmetic -> . data SUMA data
+    (64) aritmetic -> . data RESTA data
+    (65) aritmetic -> . data MULT data
+    (66) aritmetic -> . data DIV data
+    (67) aritmetic -> . data MOD data
+    (68) aritmetic -> . RESTA data
+    (69) aritmetic -> . ABS PAR_IZQ data PAR_DER
+    (70) logical -> . data AND data
+    (71) logical -> . data OR data
+    (72) logical -> . data XOR data
+    (73) logical -> . NOT data
+    (74) bitxbit -> . data AND_BIT data
+    (75) bitxbit -> . data OR_BIT data
+    (76) bitxbit -> . data XOR_BIT data
+    (77) bitxbit -> . data SHIFT_DER data
+    (78) bitxbit -> . data SHIFT_IZQ data
+    (79) bitxbit -> . NOT_BIT data
+    (80) ralational -> . data ES_IGUAL data
+    (81) ralational -> . data NO_IGUAL data
+    (82) ralational -> . data MAYOR data
+    (83) ralational -> . data MENOR data
+    (84) ralational -> . data MAYOR_IGUAL data
+    (85) ralational -> . data MENOR_IGUAL data
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+
+    RESTA           shift and go to state 76
+    ABS             shift and go to state 77
+    NOT             shift and go to state 78
+    NOT_BIT         shift and go to state 79
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+
+    condition                      shift and go to state 81
+    expression                     shift and go to state 82
+    var                            shift and go to state 83
+    aritmetic                      shift and go to state 67
+    logical                        shift and go to state 68
+    bitxbit                        shift and go to state 69
+    ralational                     shift and go to state 70
+    register                       shift and go to state 26
+    data                           shift and go to state 84
+    primary                        shift and go to state 63
+
+state 49
+
+    (21) goto -> GOTO LABEL .
+
+    PUNTO_COMA      reduce using rule 21 (goto -> GOTO LABEL .)
+
+
+state 50
+
+    (29) var -> register positions .
+    (36) positions -> positions . position
+    (38) position -> . COR_IZQ cont COR_DER
+
+    IGUAL           reduce using rule 29 (var -> register positions .)
+    PAR_DER         reduce using rule 29 (var -> register positions .)
+    SUMA            reduce using rule 29 (var -> register positions .)
+    RESTA           reduce using rule 29 (var -> register positions .)
+    MULT            reduce using rule 29 (var -> register positions .)
+    DIV             reduce using rule 29 (var -> register positions .)
+    MOD             reduce using rule 29 (var -> register positions .)
+    AND             reduce using rule 29 (var -> register positions .)
+    OR              reduce using rule 29 (var -> register positions .)
+    XOR             reduce using rule 29 (var -> register positions .)
+    AND_BIT         reduce using rule 29 (var -> register positions .)
+    OR_BIT          reduce using rule 29 (var -> register positions .)
+    XOR_BIT         reduce using rule 29 (var -> register positions .)
+    SHIFT_DER       reduce using rule 29 (var -> register positions .)
+    SHIFT_IZQ       reduce using rule 29 (var -> register positions .)
+    ES_IGUAL        reduce using rule 29 (var -> register positions .)
+    NO_IGUAL        reduce using rule 29 (var -> register positions .)
+    MAYOR           reduce using rule 29 (var -> register positions .)
+    MENOR           reduce using rule 29 (var -> register positions .)
+    MAYOR_IGUAL     reduce using rule 29 (var -> register positions .)
+    MENOR_IGUAL     reduce using rule 29 (var -> register positions .)
+    PUNTO_COMA      reduce using rule 29 (var -> register positions .)
+    COR_IZQ         shift and go to state 52
+
+    position                       shift and go to state 85
+
+state 51
+
+    (37) positions -> position .
+
+    COR_IZQ         reduce using rule 37 (positions -> position .)
+    IGUAL           reduce using rule 37 (positions -> position .)
+    PAR_DER         reduce using rule 37 (positions -> position .)
+    SUMA            reduce using rule 37 (positions -> position .)
+    RESTA           reduce using rule 37 (positions -> position .)
+    MULT            reduce using rule 37 (positions -> position .)
+    DIV             reduce using rule 37 (positions -> position .)
+    MOD             reduce using rule 37 (positions -> position .)
+    AND             reduce using rule 37 (positions -> position .)
+    OR              reduce using rule 37 (positions -> position .)
+    XOR             reduce using rule 37 (positions -> position .)
+    AND_BIT         reduce using rule 37 (positions -> position .)
+    OR_BIT          reduce using rule 37 (positions -> position .)
+    XOR_BIT         reduce using rule 37 (positions -> position .)
+    SHIFT_DER       reduce using rule 37 (positions -> position .)
+    SHIFT_IZQ       reduce using rule 37 (positions -> position .)
+    ES_IGUAL        reduce using rule 37 (positions -> position .)
+    NO_IGUAL        reduce using rule 37 (positions -> position .)
+    MAYOR           reduce using rule 37 (positions -> position .)
+    MENOR           reduce using rule 37 (positions -> position .)
+    MAYOR_IGUAL     reduce using rule 37 (positions -> position .)
+    MENOR_IGUAL     reduce using rule 37 (positions -> position .)
+    PUNTO_COMA      reduce using rule 37 (positions -> position .)
+
+
+state 52
+
+    (38) position -> COR_IZQ . cont COR_DER
+    (51) cont -> . primary
+    (52) cont -> . register
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    cont                           shift and go to state 86
+    primary                        shift and go to state 87
+    register                       shift and go to state 88
+
+state 53
+
+    (9) label -> LABEL DOS_PUNTOS instructions .
+    (11) instructions -> instructions . instruction
+    (13) instruction -> . exit PUNTO_COMA
+    (14) instruction -> . unset PUNTO_COMA
+    (15) instruction -> . print PUNTO_COMA
+    (16) instruction -> . if PUNTO_COMA
+    (17) instruction -> . set PUNTO_COMA
+    (18) instruction -> . goto PUNTO_COMA
+    (19) instruction -> . error PUNTO_COMA
+    (20) exit -> . EXIT
+    (22) unset -> . UNSET PAR_IZQ var PAR_DER
+    (23) print -> . PRINT PAR_IZQ var PAR_DER
+    (24) if -> . IF PAR_IZQ condition PAR_DER goto
+    (27) set -> . var IGUAL assignation
+    (21) goto -> . GOTO LABEL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+  ! shift/reduce conflict for error resolved as shift
+    LABEL           reduce using rule 9 (label -> LABEL DOS_PUNTOS instructions .)
+    $end            reduce using rule 9 (label -> LABEL DOS_PUNTOS instructions .)
+    error           shift and go to state 11
+    EXIT            shift and go to state 20
+    UNSET           shift and go to state 21
+    PRINT           shift and go to state 23
+    IF              shift and go to state 24
+    GOTO            shift and go to state 25
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+  ! error           [ reduce using rule 9 (label -> LABEL DOS_PUNTOS instructions .) ]
+
+    instruction                    shift and go to state 38
+    exit                           shift and go to state 14
+    unset                          shift and go to state 15
+    print                          shift and go to state 16
+    if                             shift and go to state 17
+    set                            shift and go to state 18
+    goto                           shift and go to state 19
+    var                            shift and go to state 22
+    register                       shift and go to state 26
+
+state 54
+
+    (22) unset -> UNSET PAR_IZQ var . PAR_DER
+
+    PAR_DER         shift and go to state 89
+
+
+state 55
+
+    (50) data -> var .
+
+    SUMA            reduce using rule 50 (data -> var .)
+    RESTA           reduce using rule 50 (data -> var .)
+    MULT            reduce using rule 50 (data -> var .)
+    DIV             reduce using rule 50 (data -> var .)
+    MOD             reduce using rule 50 (data -> var .)
+    AND             reduce using rule 50 (data -> var .)
+    OR              reduce using rule 50 (data -> var .)
+    XOR             reduce using rule 50 (data -> var .)
+    AND_BIT         reduce using rule 50 (data -> var .)
+    OR_BIT          reduce using rule 50 (data -> var .)
+    XOR_BIT         reduce using rule 50 (data -> var .)
+    SHIFT_DER       reduce using rule 50 (data -> var .)
+    SHIFT_IZQ       reduce using rule 50 (data -> var .)
+    ES_IGUAL        reduce using rule 50 (data -> var .)
+    NO_IGUAL        reduce using rule 50 (data -> var .)
+    MAYOR           reduce using rule 50 (data -> var .)
+    MENOR           reduce using rule 50 (data -> var .)
+    MAYOR_IGUAL     reduce using rule 50 (data -> var .)
+    MENOR_IGUAL     reduce using rule 50 (data -> var .)
+    PUNTO_COMA      reduce using rule 50 (data -> var .)
+    PAR_DER         reduce using rule 50 (data -> var .)
+
+
+state 56
+
+    (27) set -> var IGUAL assignation .
+
+    PUNTO_COMA      reduce using rule 27 (set -> var IGUAL assignation .)
+
+
+state 57
+
+    (43) assignation -> data .
+    (63) aritmetic -> data . SUMA data
+    (64) aritmetic -> data . RESTA data
+    (65) aritmetic -> data . MULT data
+    (66) aritmetic -> data . DIV data
+    (67) aritmetic -> data . MOD data
+    (70) logical -> data . AND data
+    (71) logical -> data . OR data
+    (72) logical -> data . XOR data
+    (74) bitxbit -> data . AND_BIT data
+    (75) bitxbit -> data . OR_BIT data
+    (76) bitxbit -> data . XOR_BIT data
+    (77) bitxbit -> data . SHIFT_DER data
+    (78) bitxbit -> data . SHIFT_IZQ data
+    (80) ralational -> data . ES_IGUAL data
+    (81) ralational -> data . NO_IGUAL data
+    (82) ralational -> data . MAYOR data
+    (83) ralational -> data . MENOR data
+    (84) ralational -> data . MAYOR_IGUAL data
+    (85) ralational -> data . MENOR_IGUAL data
+
+    PUNTO_COMA      reduce using rule 43 (assignation -> data .)
+    SUMA            shift and go to state 90
+    RESTA           shift and go to state 91
+    MULT            shift and go to state 92
+    DIV             shift and go to state 93
+    MOD             shift and go to state 94
+    AND             shift and go to state 95
+    OR              shift and go to state 96
+    XOR             shift and go to state 97
+    AND_BIT         shift and go to state 98
+    OR_BIT          shift and go to state 99
+    XOR_BIT         shift and go to state 100
+    SHIFT_DER       shift and go to state 101
+    SHIFT_IZQ       shift and go to state 102
+    ES_IGUAL        shift and go to state 103
+    NO_IGUAL        shift and go to state 104
+    MAYOR           shift and go to state 105
+    MENOR           shift and go to state 106
+    MAYOR_IGUAL     shift and go to state 107
+    MENOR_IGUAL     shift and go to state 108
+
+
+state 58
+
+    (44) assignation -> array .
+
+    PUNTO_COMA      reduce using rule 44 (assignation -> array .)
+
+
+state 59
+
+    (45) assignation -> read .
+
+    PUNTO_COMA      reduce using rule 45 (assignation -> read .)
+
+
+state 60
+
+    (46) assignation -> cast .
+
+    PUNTO_COMA      reduce using rule 46 (assignation -> cast .)
+
+
+state 61
+
+    (47) assignation -> expression .
+
+    PUNTO_COMA      reduce using rule 47 (assignation -> expression .)
+
+
+state 62
+
+    (48) assignation -> pointer .
+
+    PUNTO_COMA      reduce using rule 48 (assignation -> pointer .)
+
+
+state 63
+
+    (49) data -> primary .
+
+    SUMA            reduce using rule 49 (data -> primary .)
+    RESTA           reduce using rule 49 (data -> primary .)
+    MULT            reduce using rule 49 (data -> primary .)
+    DIV             reduce using rule 49 (data -> primary .)
+    MOD             reduce using rule 49 (data -> primary .)
+    AND             reduce using rule 49 (data -> primary .)
+    OR              reduce using rule 49 (data -> primary .)
+    XOR             reduce using rule 49 (data -> primary .)
+    AND_BIT         reduce using rule 49 (data -> primary .)
+    OR_BIT          reduce using rule 49 (data -> primary .)
+    XOR_BIT         reduce using rule 49 (data -> primary .)
+    SHIFT_DER       reduce using rule 49 (data -> primary .)
+    SHIFT_IZQ       reduce using rule 49 (data -> primary .)
+    ES_IGUAL        reduce using rule 49 (data -> primary .)
+    NO_IGUAL        reduce using rule 49 (data -> primary .)
+    MAYOR           reduce using rule 49 (data -> primary .)
+    MENOR           reduce using rule 49 (data -> primary .)
+    MAYOR_IGUAL     reduce using rule 49 (data -> primary .)
+    MENOR_IGUAL     reduce using rule 49 (data -> primary .)
+    PUNTO_COMA      reduce using rule 49 (data -> primary .)
+    PAR_DER         reduce using rule 49 (data -> primary .)
+
+
+state 64
+
+    (53) array -> ARRAY . PAR_IZQ PAR_DER
+
+    PAR_IZQ         shift and go to state 109
+
+
+state 65
+
+    (55) cast -> PAR_IZQ . type PAR_DER var
+    (56) type -> . FLOAT
+    (57) type -> . INT
+    (58) type -> . CHAR
+
+    FLOAT           shift and go to state 111
+    INT             shift and go to state 112
+    CHAR            shift and go to state 113
+
+    type                           shift and go to state 110
+
+state 66
+
+    (54) read -> READ . PAR_IZQ PAR_DER
+
+    PAR_IZQ         shift and go to state 114
+
+
+state 67
+
+    (59) expression -> aritmetic .
+
+    PUNTO_COMA      reduce using rule 59 (expression -> aritmetic .)
+    PAR_DER         reduce using rule 59 (expression -> aritmetic .)
+
+
+state 68
+
+    (60) expression -> logical .
+
+    PUNTO_COMA      reduce using rule 60 (expression -> logical .)
+    PAR_DER         reduce using rule 60 (expression -> logical .)
+
+
+state 69
+
+    (61) expression -> bitxbit .
+
+    PUNTO_COMA      reduce using rule 61 (expression -> bitxbit .)
+    PAR_DER         reduce using rule 61 (expression -> bitxbit .)
+
+
+state 70
+
+    (62) expression -> ralational .
+
+    PUNTO_COMA      reduce using rule 62 (expression -> ralational .)
+    PAR_DER         reduce using rule 62 (expression -> ralational .)
+
+
+state 71
+
+    (86) pointer -> AND_BIT . var
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    var                            shift and go to state 115
+    register                       shift and go to state 26
+
+state 72
+
+    (39) primary -> ENTERO .
+
+    SUMA            reduce using rule 39 (primary -> ENTERO .)
+    RESTA           reduce using rule 39 (primary -> ENTERO .)
+    MULT            reduce using rule 39 (primary -> ENTERO .)
+    DIV             reduce using rule 39 (primary -> ENTERO .)
+    MOD             reduce using rule 39 (primary -> ENTERO .)
+    AND             reduce using rule 39 (primary -> ENTERO .)
+    OR              reduce using rule 39 (primary -> ENTERO .)
+    XOR             reduce using rule 39 (primary -> ENTERO .)
+    AND_BIT         reduce using rule 39 (primary -> ENTERO .)
+    OR_BIT          reduce using rule 39 (primary -> ENTERO .)
+    XOR_BIT         reduce using rule 39 (primary -> ENTERO .)
+    SHIFT_DER       reduce using rule 39 (primary -> ENTERO .)
+    SHIFT_IZQ       reduce using rule 39 (primary -> ENTERO .)
+    ES_IGUAL        reduce using rule 39 (primary -> ENTERO .)
+    NO_IGUAL        reduce using rule 39 (primary -> ENTERO .)
+    MAYOR           reduce using rule 39 (primary -> ENTERO .)
+    MENOR           reduce using rule 39 (primary -> ENTERO .)
+    MAYOR_IGUAL     reduce using rule 39 (primary -> ENTERO .)
+    MENOR_IGUAL     reduce using rule 39 (primary -> ENTERO .)
+    PUNTO_COMA      reduce using rule 39 (primary -> ENTERO .)
+    COR_DER         reduce using rule 39 (primary -> ENTERO .)
+    PAR_DER         reduce using rule 39 (primary -> ENTERO .)
+
+
+state 73
+
+    (40) primary -> CADENA .
+
+    SUMA            reduce using rule 40 (primary -> CADENA .)
+    RESTA           reduce using rule 40 (primary -> CADENA .)
+    MULT            reduce using rule 40 (primary -> CADENA .)
+    DIV             reduce using rule 40 (primary -> CADENA .)
+    MOD             reduce using rule 40 (primary -> CADENA .)
+    AND             reduce using rule 40 (primary -> CADENA .)
+    OR              reduce using rule 40 (primary -> CADENA .)
+    XOR             reduce using rule 40 (primary -> CADENA .)
+    AND_BIT         reduce using rule 40 (primary -> CADENA .)
+    OR_BIT          reduce using rule 40 (primary -> CADENA .)
+    XOR_BIT         reduce using rule 40 (primary -> CADENA .)
+    SHIFT_DER       reduce using rule 40 (primary -> CADENA .)
+    SHIFT_IZQ       reduce using rule 40 (primary -> CADENA .)
+    ES_IGUAL        reduce using rule 40 (primary -> CADENA .)
+    NO_IGUAL        reduce using rule 40 (primary -> CADENA .)
+    MAYOR           reduce using rule 40 (primary -> CADENA .)
+    MENOR           reduce using rule 40 (primary -> CADENA .)
+    MAYOR_IGUAL     reduce using rule 40 (primary -> CADENA .)
+    MENOR_IGUAL     reduce using rule 40 (primary -> CADENA .)
+    PUNTO_COMA      reduce using rule 40 (primary -> CADENA .)
+    COR_DER         reduce using rule 40 (primary -> CADENA .)
+    PAR_DER         reduce using rule 40 (primary -> CADENA .)
+
+
+state 74
+
+    (41) primary -> CARACTER .
+
+    SUMA            reduce using rule 41 (primary -> CARACTER .)
+    RESTA           reduce using rule 41 (primary -> CARACTER .)
+    MULT            reduce using rule 41 (primary -> CARACTER .)
+    DIV             reduce using rule 41 (primary -> CARACTER .)
+    MOD             reduce using rule 41 (primary -> CARACTER .)
+    AND             reduce using rule 41 (primary -> CARACTER .)
+    OR              reduce using rule 41 (primary -> CARACTER .)
+    XOR             reduce using rule 41 (primary -> CARACTER .)
+    AND_BIT         reduce using rule 41 (primary -> CARACTER .)
+    OR_BIT          reduce using rule 41 (primary -> CARACTER .)
+    XOR_BIT         reduce using rule 41 (primary -> CARACTER .)
+    SHIFT_DER       reduce using rule 41 (primary -> CARACTER .)
+    SHIFT_IZQ       reduce using rule 41 (primary -> CARACTER .)
+    ES_IGUAL        reduce using rule 41 (primary -> CARACTER .)
+    NO_IGUAL        reduce using rule 41 (primary -> CARACTER .)
+    MAYOR           reduce using rule 41 (primary -> CARACTER .)
+    MENOR           reduce using rule 41 (primary -> CARACTER .)
+    MAYOR_IGUAL     reduce using rule 41 (primary -> CARACTER .)
+    MENOR_IGUAL     reduce using rule 41 (primary -> CARACTER .)
+    PUNTO_COMA      reduce using rule 41 (primary -> CARACTER .)
+    COR_DER         reduce using rule 41 (primary -> CARACTER .)
+    PAR_DER         reduce using rule 41 (primary -> CARACTER .)
+
+
+state 75
+
+    (42) primary -> DECIMAL .
+
+    SUMA            reduce using rule 42 (primary -> DECIMAL .)
+    RESTA           reduce using rule 42 (primary -> DECIMAL .)
+    MULT            reduce using rule 42 (primary -> DECIMAL .)
+    DIV             reduce using rule 42 (primary -> DECIMAL .)
+    MOD             reduce using rule 42 (primary -> DECIMAL .)
+    AND             reduce using rule 42 (primary -> DECIMAL .)
+    OR              reduce using rule 42 (primary -> DECIMAL .)
+    XOR             reduce using rule 42 (primary -> DECIMAL .)
+    AND_BIT         reduce using rule 42 (primary -> DECIMAL .)
+    OR_BIT          reduce using rule 42 (primary -> DECIMAL .)
+    XOR_BIT         reduce using rule 42 (primary -> DECIMAL .)
+    SHIFT_DER       reduce using rule 42 (primary -> DECIMAL .)
+    SHIFT_IZQ       reduce using rule 42 (primary -> DECIMAL .)
+    ES_IGUAL        reduce using rule 42 (primary -> DECIMAL .)
+    NO_IGUAL        reduce using rule 42 (primary -> DECIMAL .)
+    MAYOR           reduce using rule 42 (primary -> DECIMAL .)
+    MENOR           reduce using rule 42 (primary -> DECIMAL .)
+    MAYOR_IGUAL     reduce using rule 42 (primary -> DECIMAL .)
+    MENOR_IGUAL     reduce using rule 42 (primary -> DECIMAL .)
+    PUNTO_COMA      reduce using rule 42 (primary -> DECIMAL .)
+    COR_DER         reduce using rule 42 (primary -> DECIMAL .)
+    PAR_DER         reduce using rule 42 (primary -> DECIMAL .)
+
+
+state 76
+
+    (68) aritmetic -> RESTA . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 116
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 77
+
+    (69) aritmetic -> ABS . PAR_IZQ data PAR_DER
+
+    PAR_IZQ         shift and go to state 117
+
+
+state 78
+
+    (73) logical -> NOT . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 118
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 79
+
+    (79) bitxbit -> NOT_BIT . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 119
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 80
+
+    (23) print -> PRINT PAR_IZQ var . PAR_DER
+
+    PAR_DER         shift and go to state 120
+
+
+state 81
+
+    (24) if -> IF PAR_IZQ condition . PAR_DER goto
+
+    PAR_DER         shift and go to state 121
+
+
+state 82
+
+    (25) condition -> expression .
+
+    PAR_DER         reduce using rule 25 (condition -> expression .)
+
+
+state 83
+
+    (26) condition -> var .
+    (50) data -> var .
+
+    PAR_DER         reduce using rule 26 (condition -> var .)
+    SUMA            reduce using rule 50 (data -> var .)
+    RESTA           reduce using rule 50 (data -> var .)
+    MULT            reduce using rule 50 (data -> var .)
+    DIV             reduce using rule 50 (data -> var .)
+    MOD             reduce using rule 50 (data -> var .)
+    AND             reduce using rule 50 (data -> var .)
+    OR              reduce using rule 50 (data -> var .)
+    XOR             reduce using rule 50 (data -> var .)
+    AND_BIT         reduce using rule 50 (data -> var .)
+    OR_BIT          reduce using rule 50 (data -> var .)
+    XOR_BIT         reduce using rule 50 (data -> var .)
+    SHIFT_DER       reduce using rule 50 (data -> var .)
+    SHIFT_IZQ       reduce using rule 50 (data -> var .)
+    ES_IGUAL        reduce using rule 50 (data -> var .)
+    NO_IGUAL        reduce using rule 50 (data -> var .)
+    MAYOR           reduce using rule 50 (data -> var .)
+    MENOR           reduce using rule 50 (data -> var .)
+    MAYOR_IGUAL     reduce using rule 50 (data -> var .)
+    MENOR_IGUAL     reduce using rule 50 (data -> var .)
+
+
+state 84
+
+    (63) aritmetic -> data . SUMA data
+    (64) aritmetic -> data . RESTA data
+    (65) aritmetic -> data . MULT data
+    (66) aritmetic -> data . DIV data
+    (67) aritmetic -> data . MOD data
+    (70) logical -> data . AND data
+    (71) logical -> data . OR data
+    (72) logical -> data . XOR data
+    (74) bitxbit -> data . AND_BIT data
+    (75) bitxbit -> data . OR_BIT data
+    (76) bitxbit -> data . XOR_BIT data
+    (77) bitxbit -> data . SHIFT_DER data
+    (78) bitxbit -> data . SHIFT_IZQ data
+    (80) ralational -> data . ES_IGUAL data
+    (81) ralational -> data . NO_IGUAL data
+    (82) ralational -> data . MAYOR data
+    (83) ralational -> data . MENOR data
+    (84) ralational -> data . MAYOR_IGUAL data
+    (85) ralational -> data . MENOR_IGUAL data
+
+    SUMA            shift and go to state 90
+    RESTA           shift and go to state 91
+    MULT            shift and go to state 92
+    DIV             shift and go to state 93
+    MOD             shift and go to state 94
+    AND             shift and go to state 95
+    OR              shift and go to state 96
+    XOR             shift and go to state 97
+    AND_BIT         shift and go to state 98
+    OR_BIT          shift and go to state 99
+    XOR_BIT         shift and go to state 100
+    SHIFT_DER       shift and go to state 101
+    SHIFT_IZQ       shift and go to state 102
+    ES_IGUAL        shift and go to state 103
+    NO_IGUAL        shift and go to state 104
+    MAYOR           shift and go to state 105
+    MENOR           shift and go to state 106
+    MAYOR_IGUAL     shift and go to state 107
+    MENOR_IGUAL     shift and go to state 108
+
+
+state 85
+
+    (36) positions -> positions position .
+
+    COR_IZQ         reduce using rule 36 (positions -> positions position .)
+    IGUAL           reduce using rule 36 (positions -> positions position .)
+    PAR_DER         reduce using rule 36 (positions -> positions position .)
+    SUMA            reduce using rule 36 (positions -> positions position .)
+    RESTA           reduce using rule 36 (positions -> positions position .)
+    MULT            reduce using rule 36 (positions -> positions position .)
+    DIV             reduce using rule 36 (positions -> positions position .)
+    MOD             reduce using rule 36 (positions -> positions position .)
+    AND             reduce using rule 36 (positions -> positions position .)
+    OR              reduce using rule 36 (positions -> positions position .)
+    XOR             reduce using rule 36 (positions -> positions position .)
+    AND_BIT         reduce using rule 36 (positions -> positions position .)
+    OR_BIT          reduce using rule 36 (positions -> positions position .)
+    XOR_BIT         reduce using rule 36 (positions -> positions position .)
+    SHIFT_DER       reduce using rule 36 (positions -> positions position .)
+    SHIFT_IZQ       reduce using rule 36 (positions -> positions position .)
+    ES_IGUAL        reduce using rule 36 (positions -> positions position .)
+    NO_IGUAL        reduce using rule 36 (positions -> positions position .)
+    MAYOR           reduce using rule 36 (positions -> positions position .)
+    MENOR           reduce using rule 36 (positions -> positions position .)
+    MAYOR_IGUAL     reduce using rule 36 (positions -> positions position .)
+    MENOR_IGUAL     reduce using rule 36 (positions -> positions position .)
+    PUNTO_COMA      reduce using rule 36 (positions -> positions position .)
+
+
+state 86
+
+    (38) position -> COR_IZQ cont . COR_DER
+
+    COR_DER         shift and go to state 122
+
+
+state 87
+
+    (51) cont -> primary .
+
+    COR_DER         reduce using rule 51 (cont -> primary .)
+
+
+state 88
+
+    (52) cont -> register .
+
+    COR_DER         reduce using rule 52 (cont -> register .)
+
+
+state 89
+
+    (22) unset -> UNSET PAR_IZQ var PAR_DER .
+
+    PUNTO_COMA      reduce using rule 22 (unset -> UNSET PAR_IZQ var PAR_DER .)
+
+
+state 90
+
+    (63) aritmetic -> data SUMA . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 123
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 91
+
+    (64) aritmetic -> data RESTA . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 124
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 92
+
+    (65) aritmetic -> data MULT . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 125
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 93
+
+    (66) aritmetic -> data DIV . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 126
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 94
+
+    (67) aritmetic -> data MOD . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 127
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 95
+
+    (70) logical -> data AND . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 128
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 96
+
+    (71) logical -> data OR . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 129
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 97
+
+    (72) logical -> data XOR . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 130
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 98
+
+    (74) bitxbit -> data AND_BIT . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 131
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 99
+
+    (75) bitxbit -> data OR_BIT . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 132
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 100
+
+    (76) bitxbit -> data XOR_BIT . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 133
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 101
+
+    (77) bitxbit -> data SHIFT_DER . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 134
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 102
+
+    (78) bitxbit -> data SHIFT_IZQ . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 135
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 103
+
+    (80) ralational -> data ES_IGUAL . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 136
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 104
+
+    (81) ralational -> data NO_IGUAL . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 137
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 105
+
+    (82) ralational -> data MAYOR . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 138
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 106
+
+    (83) ralational -> data MENOR . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 139
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 107
+
+    (84) ralational -> data MAYOR_IGUAL . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 140
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 108
+
+    (85) ralational -> data MENOR_IGUAL . data
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 141
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 109
+
+    (53) array -> ARRAY PAR_IZQ . PAR_DER
+
+    PAR_DER         shift and go to state 142
+
+
+state 110
+
+    (55) cast -> PAR_IZQ type . PAR_DER var
+
+    PAR_DER         shift and go to state 143
+
+
+state 111
+
+    (56) type -> FLOAT .
+
+    PAR_DER         reduce using rule 56 (type -> FLOAT .)
+
+
+state 112
+
+    (57) type -> INT .
+
+    PAR_DER         reduce using rule 57 (type -> INT .)
+
+
+state 113
+
+    (58) type -> CHAR .
+
+    PAR_DER         reduce using rule 58 (type -> CHAR .)
+
+
+state 114
+
+    (54) read -> READ PAR_IZQ . PAR_DER
+
+    PAR_DER         shift and go to state 144
+
+
+state 115
+
+    (86) pointer -> AND_BIT var .
+
+    PUNTO_COMA      reduce using rule 86 (pointer -> AND_BIT var .)
+
+
+state 116
+
+    (68) aritmetic -> RESTA data .
+
+    PUNTO_COMA      reduce using rule 68 (aritmetic -> RESTA data .)
+    PAR_DER         reduce using rule 68 (aritmetic -> RESTA data .)
+
+
+state 117
+
+    (69) aritmetic -> ABS PAR_IZQ . data PAR_DER
+    (49) data -> . primary
+    (50) data -> . var
+    (39) primary -> . ENTERO
+    (40) primary -> . CADENA
+    (41) primary -> . CARACTER
+    (42) primary -> . DECIMAL
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    ENTERO          shift and go to state 72
+    CADENA          shift and go to state 73
+    CARACTER        shift and go to state 74
+    DECIMAL         shift and go to state 75
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    data                           shift and go to state 145
+    primary                        shift and go to state 63
+    var                            shift and go to state 55
+    register                       shift and go to state 26
+
+state 118
+
+    (73) logical -> NOT data .
+
+    PUNTO_COMA      reduce using rule 73 (logical -> NOT data .)
+    PAR_DER         reduce using rule 73 (logical -> NOT data .)
+
+
+state 119
+
+    (79) bitxbit -> NOT_BIT data .
+
+    PUNTO_COMA      reduce using rule 79 (bitxbit -> NOT_BIT data .)
+    PAR_DER         reduce using rule 79 (bitxbit -> NOT_BIT data .)
+
+
+state 120
+
+    (23) print -> PRINT PAR_IZQ var PAR_DER .
+
+    PUNTO_COMA      reduce using rule 23 (print -> PRINT PAR_IZQ var PAR_DER .)
+
+
+state 121
+
+    (24) if -> IF PAR_IZQ condition PAR_DER . goto
+    (21) goto -> . GOTO LABEL
+
+    GOTO            shift and go to state 25
+
+    goto                           shift and go to state 146
+
+state 122
+
+    (38) position -> COR_IZQ cont COR_DER .
+
+    COR_IZQ         reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    IGUAL           reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    PAR_DER         reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    SUMA            reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    RESTA           reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    MULT            reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    DIV             reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    MOD             reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    AND             reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    OR              reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    XOR             reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    AND_BIT         reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    OR_BIT          reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    XOR_BIT         reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    SHIFT_DER       reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    SHIFT_IZQ       reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    ES_IGUAL        reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    NO_IGUAL        reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    MAYOR           reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    MENOR           reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    MAYOR_IGUAL     reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    MENOR_IGUAL     reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+    PUNTO_COMA      reduce using rule 38 (position -> COR_IZQ cont COR_DER .)
+
+
+state 123
+
+    (63) aritmetic -> data SUMA data .
+
+    PUNTO_COMA      reduce using rule 63 (aritmetic -> data SUMA data .)
+    PAR_DER         reduce using rule 63 (aritmetic -> data SUMA data .)
+
+
+state 124
+
+    (64) aritmetic -> data RESTA data .
+
+    PUNTO_COMA      reduce using rule 64 (aritmetic -> data RESTA data .)
+    PAR_DER         reduce using rule 64 (aritmetic -> data RESTA data .)
+
+
+state 125
+
+    (65) aritmetic -> data MULT data .
+
+    PUNTO_COMA      reduce using rule 65 (aritmetic -> data MULT data .)
+    PAR_DER         reduce using rule 65 (aritmetic -> data MULT data .)
+
+
+state 126
+
+    (66) aritmetic -> data DIV data .
+
+    PUNTO_COMA      reduce using rule 66 (aritmetic -> data DIV data .)
+    PAR_DER         reduce using rule 66 (aritmetic -> data DIV data .)
+
+
+state 127
+
+    (67) aritmetic -> data MOD data .
+
+    PUNTO_COMA      reduce using rule 67 (aritmetic -> data MOD data .)
+    PAR_DER         reduce using rule 67 (aritmetic -> data MOD data .)
+
+
+state 128
+
+    (70) logical -> data AND data .
+
+    PUNTO_COMA      reduce using rule 70 (logical -> data AND data .)
+    PAR_DER         reduce using rule 70 (logical -> data AND data .)
+
+
+state 129
+
+    (71) logical -> data OR data .
+
+    PUNTO_COMA      reduce using rule 71 (logical -> data OR data .)
+    PAR_DER         reduce using rule 71 (logical -> data OR data .)
+
+
+state 130
+
+    (72) logical -> data XOR data .
+
+    PUNTO_COMA      reduce using rule 72 (logical -> data XOR data .)
+    PAR_DER         reduce using rule 72 (logical -> data XOR data .)
+
+
+state 131
+
+    (74) bitxbit -> data AND_BIT data .
+
+    PUNTO_COMA      reduce using rule 74 (bitxbit -> data AND_BIT data .)
+    PAR_DER         reduce using rule 74 (bitxbit -> data AND_BIT data .)
+
+
+state 132
+
+    (75) bitxbit -> data OR_BIT data .
+
+    PUNTO_COMA      reduce using rule 75 (bitxbit -> data OR_BIT data .)
+    PAR_DER         reduce using rule 75 (bitxbit -> data OR_BIT data .)
+
+
+state 133
+
+    (76) bitxbit -> data XOR_BIT data .
+
+    PUNTO_COMA      reduce using rule 76 (bitxbit -> data XOR_BIT data .)
+    PAR_DER         reduce using rule 76 (bitxbit -> data XOR_BIT data .)
+
+
+state 134
+
+    (77) bitxbit -> data SHIFT_DER data .
+
+    PUNTO_COMA      reduce using rule 77 (bitxbit -> data SHIFT_DER data .)
+    PAR_DER         reduce using rule 77 (bitxbit -> data SHIFT_DER data .)
+
+
+state 135
+
+    (78) bitxbit -> data SHIFT_IZQ data .
+
+    PUNTO_COMA      reduce using rule 78 (bitxbit -> data SHIFT_IZQ data .)
+    PAR_DER         reduce using rule 78 (bitxbit -> data SHIFT_IZQ data .)
+
+
+state 136
+
+    (80) ralational -> data ES_IGUAL data .
+
+    PUNTO_COMA      reduce using rule 80 (ralational -> data ES_IGUAL data .)
+    PAR_DER         reduce using rule 80 (ralational -> data ES_IGUAL data .)
+
+
+state 137
+
+    (81) ralational -> data NO_IGUAL data .
+
+    PUNTO_COMA      reduce using rule 81 (ralational -> data NO_IGUAL data .)
+    PAR_DER         reduce using rule 81 (ralational -> data NO_IGUAL data .)
+
+
+state 138
+
+    (82) ralational -> data MAYOR data .
+
+    PUNTO_COMA      reduce using rule 82 (ralational -> data MAYOR data .)
+    PAR_DER         reduce using rule 82 (ralational -> data MAYOR data .)
+
+
+state 139
+
+    (83) ralational -> data MENOR data .
+
+    PUNTO_COMA      reduce using rule 83 (ralational -> data MENOR data .)
+    PAR_DER         reduce using rule 83 (ralational -> data MENOR data .)
+
+
+state 140
+
+    (84) ralational -> data MAYOR_IGUAL data .
+
+    PUNTO_COMA      reduce using rule 84 (ralational -> data MAYOR_IGUAL data .)
+    PAR_DER         reduce using rule 84 (ralational -> data MAYOR_IGUAL data .)
+
+
+state 141
+
+    (85) ralational -> data MENOR_IGUAL data .
+
+    PUNTO_COMA      reduce using rule 85 (ralational -> data MENOR_IGUAL data .)
+    PAR_DER         reduce using rule 85 (ralational -> data MENOR_IGUAL data .)
+
+
+state 142
+
+    (53) array -> ARRAY PAR_IZQ PAR_DER .
+
+    PUNTO_COMA      reduce using rule 53 (array -> ARRAY PAR_IZQ PAR_DER .)
+
+
+state 143
+
+    (55) cast -> PAR_IZQ type PAR_DER . var
+    (28) var -> . register
+    (29) var -> . register positions
+    (30) register -> . TEMPORAL
+    (31) register -> . PARAMETRO
+    (32) register -> . DEVUELTO
+    (33) register -> . RETORNO
+    (34) register -> . PILA
+    (35) register -> . PUNTERO
+
+    TEMPORAL        shift and go to state 27
+    PARAMETRO       shift and go to state 28
+    DEVUELTO        shift and go to state 29
+    RETORNO         shift and go to state 30
+    PILA            shift and go to state 31
+    PUNTERO         shift and go to state 32
+
+    var                            shift and go to state 147
+    register                       shift and go to state 26
+
+state 144
+
+    (54) read -> READ PAR_IZQ PAR_DER .
+
+    PUNTO_COMA      reduce using rule 54 (read -> READ PAR_IZQ PAR_DER .)
+
+
+state 145
+
+    (69) aritmetic -> ABS PAR_IZQ data . PAR_DER
+
+    PAR_DER         shift and go to state 148
+
+
+state 146
+
+    (24) if -> IF PAR_IZQ condition PAR_DER goto .
+
+    PUNTO_COMA      reduce using rule 24 (if -> IF PAR_IZQ condition PAR_DER goto .)
+
+
+state 147
+
+    (55) cast -> PAR_IZQ type PAR_DER var .
+
+    PUNTO_COMA      reduce using rule 55 (cast -> PAR_IZQ type PAR_DER var .)
+
+
+state 148
+
+    (69) aritmetic -> ABS PAR_IZQ data PAR_DER .
+
+    PUNTO_COMA      reduce using rule 69 (aritmetic -> ABS PAR_IZQ data PAR_DER .)
+    PAR_DER         reduce using rule 69 (aritmetic -> ABS PAR_IZQ data PAR_DER .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for error in state 12 resolved as shift
+WARNING: shift/reduce conflict for error in state 35 resolved as shift
+WARNING: shift/reduce conflict for error in state 36 resolved as shift
+WARNING: shift/reduce conflict for error in state 53 resolved as shift

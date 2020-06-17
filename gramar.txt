@@ -1,0 +1,144 @@
+INIT:
+    MAIN
+    MAIN LABELS
+
+MAIN:
+    t_main t_dos_puntos INSTRUCTIONS 
+
+LABELS:
+    LABELS LABEL
+    LABEL
+
+LABEL:
+    t_label t_dos_puntos INSTRUCTIONS
+
+INSTRUCTIONS:
+    INSTRUCTIONS INSTRUCTION
+    INSTRUCTION 
+
+INSTRUCTION:
+    EXIT t_punto_coma
+    GOTO t_punto_coma
+    UNSET t_punto_coma
+    PRINT t_punto_coma
+    IF t_punto_coma
+    SET t_punto_coma
+
+EXIT:
+    t_exit 
+
+GOTO:
+    t_goto t_label
+
+UNSET: 
+    t_unset t_par_izq VAR t_par_der
+
+PRINT:
+    t_print t_par_izq VAR t_par_der 
+
+IF:
+    t_if t_par_izq EXPRESSION t_par_der GOTO
+
+SET:
+    VAR t_igual ASSIGNATION
+
+VAR:
+    REGISTER
+    REGISTER POSITIONS
+
+REGISTER:
+    t_temp
+    t_params
+    t_pila
+    t_return
+    t_devuelto
+    t_puntero
+
+POSITIONS:
+    POSITIONS POSITION 
+    POSITION 
+
+POSITION:
+    t_cor_izq CONT t_cor_der
+
+PRIMARY:
+    t_entero
+    t_decimal
+    t_cadena
+    t_caracter
+
+ASSIGNATION:
+    DATA
+    ARRAY
+    READ
+    CAST
+    EXPRESSION
+
+DATA:
+    PRIMARY
+    VAR
+
+CONT:
+    PRIMARY 
+    REGISTER
+
+
+ARRAY:
+    t_array t_par_izq t_par_der
+
+READ:
+    t_read t_par_izq t_par_der
+
+CAST:
+    t_par_izq TYPE t_par_der VAR
+
+TYPE:
+    t_float
+    t_int 
+    t_char
+
+EXPRESSION:
+    ARITMETIC
+    LOGICAL
+    BITXBIT
+    RELATIONAL
+    UNARY
+
+ARITMETIC:
+    DATA t_suma DATA
+    DATA t_resta DATA
+    DATA t_mult DATA
+    DATA t_div DATA
+    DATA t_mod DATA
+    t_abs t_par_izq DATA t_par_der
+
+LOGICAL:
+    DATA t_and DATA
+    DATA t_or DATA
+    DATA t_xor DATA
+    t_not DATA
+
+BITXBIT:
+    DATA t_and_bit DATA
+    DATA t_or_bit DATA
+    DATA t_xor_bit DATA
+    DATA t_shift_der DATA
+    DATA t_shift_izq DATA
+    t_not_bit DATA
+
+RELATIONAL:
+    DATA t_es_igual DATA
+    DATA t_no_igual DATA
+    DATA t_mayor DATA
+    DATA t_menor DATA
+    DATA t_mayor_igual DATA
+    DATA t_menor_igual DATA
+
+UNARY:
+    t_resta DATA
+    t_and_bit VAR
+
+
+
+
+

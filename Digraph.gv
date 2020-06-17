@@ -1,0 +1,556 @@
+digraph {
+	splines=false
+	1 [label=PROGRAM]
+	3 [label=main]
+	1 -> 3
+	4 [label=SET]
+	3 -> 4
+	5 [label="="]
+	4 -> 5
+	6 [label=REGISTER]
+	5 -> 6
+	7 [label=PILA]
+	6 -> 7
+	8 [label=0]
+	6 -> 8
+	9 [label=ARRAY]
+	5 -> 9
+	10 [label=SET]
+	3 -> 10
+	11 [label="="]
+	10 -> 11
+	12 [label=REGISTER]
+	11 -> 12
+	13 [label="PUNTERO PILA"]
+	12 -> 13
+	14 [label=sp]
+	12 -> 14
+	15 [label=ARITMETIC]
+	11 -> 15
+	16 [label="-"]
+	15 -> 16
+	17 [label=1]
+	16 -> 17
+	18 [label=SET]
+	3 -> 18
+	19 [label="="]
+	18 -> 19
+	20 [label=REGISTER]
+	19 -> 20
+	21 [label=PARAMETRO]
+	20 -> 21
+	22 [label=0]
+	20 -> 22
+	23 [label=3]
+	19 -> 23
+	24 [label=SET]
+	3 -> 24
+	25 [label="="]
+	24 -> 25
+	26 [label=REGISTER]
+	25 -> 26
+	27 [label=PARAMETRO]
+	26 -> 27
+	28 [label=1]
+	26 -> 28
+	29 [label=5]
+	25 -> 29
+	30 [label=SET]
+	3 -> 30
+	31 [label="="]
+	30 -> 31
+	32 [label=REGISTER]
+	31 -> 32
+	33 [label="PUNTERO PILA"]
+	32 -> 33
+	34 [label=sp]
+	32 -> 34
+	35 [label=ARITMETIC]
+	31 -> 35
+	36 [label="+"]
+	35 -> 36
+	37 [label=REGISTER]
+	36 -> 37
+	38 [label="PUNTERO PILA"]
+	37 -> 38
+	39 [label=sp]
+	37 -> 39
+	40 [label=1]
+	36 -> 40
+	41 [label=SET]
+	3 -> 41
+	42 [label="="]
+	41 -> 42
+	43 [label=ARRAY]
+	42 -> 43
+	44 [label=PILA]
+	43 -> 44
+	45 [label=0]
+	43 -> 45
+	46 [label="INDICE 1"]
+	43 -> 46
+	47 [label=REGISTER]
+	46 -> 47
+	48 [label="PUNTERO PILA"]
+	47 -> 48
+	49 [label=sp]
+	47 -> 49
+	50 [label=REGISTER]
+	42 -> 50
+	51 [label=PARAMETRO]
+	50 -> 51
+	52 [label=0]
+	50 -> 52
+	53 [label=GOTO]
+	3 -> 53
+	54 [label=ack]
+	53 -> 54
+	55 [label=ret0]
+	1 -> 55
+	56 [label=PRINT]
+	55 -> 56
+	57 [label=REGISTER]
+	56 -> 57
+	58 [label=RETORNO]
+	57 -> 58
+	59 [label=0]
+	57 -> 59
+	60 [label=EXIT]
+	55 -> 60
+	61 [label=ack]
+	1 -> 61
+	62 [label=IF]
+	61 -> 62
+	63 [label=RELATIONAL]
+	62 -> 63
+	64 [label="<"]
+	63 -> 64
+	65 [label=REGISTER]
+	64 -> 65
+	66 [label="PUNTERO PILA"]
+	65 -> 66
+	67 [label=sp]
+	65 -> 67
+	68 [label=0]
+	64 -> 68
+	69 [label=GOTO]
+	62 -> 69
+	70 [label=ret3]
+	69 -> 70
+	71 [label=SET]
+	61 -> 71
+	72 [label="="]
+	71 -> 72
+	73 [label=REGISTER]
+	72 -> 73
+	74 [label=PARAMETRO]
+	73 -> 74
+	75 [label=0]
+	73 -> 75
+	76 [label=ARRAY]
+	72 -> 76
+	77 [label=PILA]
+	76 -> 77
+	78 [label=0]
+	76 -> 78
+	79 [label="INDICE 1"]
+	76 -> 79
+	80 [label=REGISTER]
+	79 -> 80
+	81 [label="PUNTERO PILA"]
+	80 -> 81
+	82 [label=sp]
+	80 -> 82
+	83 [label=SET]
+	61 -> 83
+	84 [label="="]
+	83 -> 84
+	85 [label=REGISTER]
+	84 -> 85
+	86 [label="PUNTERO PILA"]
+	85 -> 86
+	87 [label=sp]
+	85 -> 87
+	88 [label=ARITMETIC]
+	84 -> 88
+	89 [label="-"]
+	88 -> 89
+	90 [label=REGISTER]
+	89 -> 90
+	91 [label="PUNTERO PILA"]
+	90 -> 91
+	92 [label=sp]
+	90 -> 92
+	93 [label=1]
+	89 -> 93
+	94 [label=IF]
+	61 -> 94
+	95 [label=RELATIONAL]
+	94 -> 95
+	96 [label="!="]
+	95 -> 96
+	97 [label=REGISTER]
+	96 -> 97
+	98 [label=PARAMETRO]
+	97 -> 98
+	99 [label=0]
+	97 -> 99
+	100 [label=0]
+	96 -> 100
+	101 [label=GOTO]
+	94 -> 101
+	102 [label=ret1]
+	101 -> 102
+	103 [label=SET]
+	61 -> 103
+	104 [label="="]
+	103 -> 104
+	105 [label=REGISTER]
+	104 -> 105
+	106 [label=TEMPORAL]
+	105 -> 106
+	107 [label=4]
+	105 -> 107
+	108 [label=ARITMETIC]
+	104 -> 108
+	109 [label="+"]
+	108 -> 109
+	110 [label=REGISTER]
+	109 -> 110
+	111 [label=PARAMETRO]
+	110 -> 111
+	112 [label=0]
+	110 -> 112
+	113 [label=1]
+	109 -> 113
+	114 [label=SET]
+	61 -> 114
+	115 [label="="]
+	114 -> 115
+	116 [label=REGISTER]
+	115 -> 116
+	117 [label=PARAMETRO]
+	116 -> 117
+	118 [label=1]
+	116 -> 118
+	119 [label=ARITMETIC]
+	115 -> 119
+	120 [label="+"]
+	119 -> 120
+	121 [label=REGISTER]
+	120 -> 121
+	122 [label=PARAMETRO]
+	121 -> 122
+	123 [label=1]
+	121 -> 123
+	124 [label=REGISTER]
+	120 -> 124
+	125 [label=TEMPORAL]
+	124 -> 125
+	126 [label=4]
+	124 -> 126
+	127 [label=GOTO]
+	61 -> 127
+	128 [label=ack]
+	127 -> 128
+	129 [label=ret1]
+	1 -> 129
+	130 [label=IF]
+	129 -> 130
+	131 [label=RELATIONAL]
+	130 -> 131
+	132 [label="!="]
+	131 -> 132
+	133 [label=REGISTER]
+	132 -> 133
+	134 [label=PARAMETRO]
+	133 -> 134
+	135 [label=1]
+	133 -> 135
+	136 [label=0]
+	132 -> 136
+	137 [label=GOTO]
+	130 -> 137
+	138 [label=ret2]
+	137 -> 138
+	139 [label=SET]
+	129 -> 139
+	140 [label="="]
+	139 -> 140
+	141 [label=REGISTER]
+	140 -> 141
+	142 [label=PARAMETRO]
+	141 -> 142
+	143 [label=1]
+	141 -> 143
+	144 [label=ARITMETIC]
+	140 -> 144
+	145 [label="+"]
+	144 -> 145
+	146 [label=REGISTER]
+	145 -> 146
+	147 [label=PARAMETRO]
+	146 -> 147
+	148 [label=1]
+	146 -> 148
+	149 [label=1]
+	145 -> 149
+	150 [label=SET]
+	129 -> 150
+	151 [label="="]
+	150 -> 151
+	152 [label=REGISTER]
+	151 -> 152
+	153 [label=PARAMETRO]
+	152 -> 153
+	154 [label=0]
+	152 -> 154
+	155 [label=ARITMETIC]
+	151 -> 155
+	156 [label="-"]
+	155 -> 156
+	157 [label=REGISTER]
+	156 -> 157
+	158 [label=PARAMETRO]
+	157 -> 158
+	159 [label=0]
+	157 -> 159
+	160 [label=1]
+	156 -> 160
+	161 [label=SET]
+	129 -> 161
+	162 [label="="]
+	161 -> 162
+	163 [label=REGISTER]
+	162 -> 163
+	164 [label="PUNTERO PILA"]
+	163 -> 164
+	165 [label=sp]
+	163 -> 165
+	166 [label=ARITMETIC]
+	162 -> 166
+	167 [label="+"]
+	166 -> 167
+	168 [label=REGISTER]
+	167 -> 168
+	169 [label="PUNTERO PILA"]
+	168 -> 169
+	170 [label=sp]
+	168 -> 170
+	171 [label=1]
+	167 -> 171
+	172 [label=SET]
+	129 -> 172
+	173 [label="="]
+	172 -> 173
+	174 [label=ARRAY]
+	173 -> 174
+	175 [label=PILA]
+	174 -> 175
+	176 [label=0]
+	174 -> 176
+	177 [label="INDICE 1"]
+	174 -> 177
+	178 [label=REGISTER]
+	177 -> 178
+	179 [label="PUNTERO PILA"]
+	178 -> 179
+	180 [label=sp]
+	178 -> 180
+	181 [label=REGISTER]
+	173 -> 181
+	182 [label=PARAMETRO]
+	181 -> 182
+	183 [label=0]
+	181 -> 183
+	184 [label=GOTO]
+	129 -> 184
+	185 [label=ack]
+	184 -> 185
+	186 [label=ret2]
+	1 -> 186
+	187 [label=SET]
+	186 -> 187
+	188 [label="="]
+	187 -> 188
+	189 [label=REGISTER]
+	188 -> 189
+	190 [label=PARAMETRO]
+	189 -> 190
+	191 [label=0]
+	189 -> 191
+	192 [label=ARITMETIC]
+	188 -> 192
+	193 [label="-"]
+	192 -> 193
+	194 [label=REGISTER]
+	193 -> 194
+	195 [label=PARAMETRO]
+	194 -> 195
+	196 [label=0]
+	194 -> 196
+	197 [label=1]
+	193 -> 197
+	198 [label=SET]
+	186 -> 198
+	199 [label="="]
+	198 -> 199
+	200 [label=REGISTER]
+	199 -> 200
+	201 [label="PUNTERO PILA"]
+	200 -> 201
+	202 [label=sp]
+	200 -> 202
+	203 [label=ARITMETIC]
+	199 -> 203
+	204 [label="+"]
+	203 -> 204
+	205 [label=REGISTER]
+	204 -> 205
+	206 [label="PUNTERO PILA"]
+	205 -> 206
+	207 [label=sp]
+	205 -> 207
+	208 [label=1]
+	204 -> 208
+	209 [label=SET]
+	186 -> 209
+	210 [label="="]
+	209 -> 210
+	211 [label=ARRAY]
+	210 -> 211
+	212 [label=PILA]
+	211 -> 212
+	213 [label=0]
+	211 -> 213
+	214 [label="INDICE 1"]
+	211 -> 214
+	215 [label=REGISTER]
+	214 -> 215
+	216 [label="PUNTERO PILA"]
+	215 -> 216
+	217 [label=sp]
+	215 -> 217
+	218 [label=REGISTER]
+	210 -> 218
+	219 [label=PARAMETRO]
+	218 -> 219
+	220 [label=0]
+	218 -> 220
+	221 [label=SET]
+	186 -> 221
+	222 [label="="]
+	221 -> 222
+	223 [label=REGISTER]
+	222 -> 223
+	224 [label=PARAMETRO]
+	223 -> 224
+	225 [label=0]
+	223 -> 225
+	226 [label=ARITMETIC]
+	222 -> 226
+	227 [label="+"]
+	226 -> 227
+	228 [label=REGISTER]
+	227 -> 228
+	229 [label=PARAMETRO]
+	228 -> 229
+	230 [label=0]
+	228 -> 230
+	231 [label=1]
+	227 -> 231
+	232 [label=SET]
+	186 -> 232
+	233 [label="="]
+	232 -> 233
+	234 [label=REGISTER]
+	233 -> 234
+	235 [label="PUNTERO PILA"]
+	234 -> 235
+	236 [label=sp]
+	234 -> 236
+	237 [label=ARITMETIC]
+	233 -> 237
+	238 [label="+"]
+	237 -> 238
+	239 [label=REGISTER]
+	238 -> 239
+	240 [label="PUNTERO PILA"]
+	239 -> 240
+	241 [label=sp]
+	239 -> 241
+	242 [label=1]
+	238 -> 242
+	243 [label=SET]
+	186 -> 243
+	244 [label="="]
+	243 -> 244
+	245 [label=ARRAY]
+	244 -> 245
+	246 [label=PILA]
+	245 -> 246
+	247 [label=0]
+	245 -> 247
+	248 [label="INDICE 1"]
+	245 -> 248
+	249 [label=REGISTER]
+	248 -> 249
+	250 [label="PUNTERO PILA"]
+	249 -> 250
+	251 [label=sp]
+	249 -> 251
+	252 [label=REGISTER]
+	244 -> 252
+	253 [label=PARAMETRO]
+	252 -> 253
+	254 [label=0]
+	252 -> 254
+	255 [label=SET]
+	186 -> 255
+	256 [label="="]
+	255 -> 256
+	257 [label=REGISTER]
+	256 -> 257
+	258 [label=PARAMETRO]
+	257 -> 258
+	259 [label=1]
+	257 -> 259
+	260 [label=ARITMETIC]
+	256 -> 260
+	261 [label="-"]
+	260 -> 261
+	262 [label=REGISTER]
+	261 -> 262
+	263 [label=PARAMETRO]
+	262 -> 263
+	264 [label=1]
+	262 -> 264
+	265 [label=1]
+	261 -> 265
+	266 [label=GOTO]
+	186 -> 266
+	267 [label=ack]
+	266 -> 267
+	268 [label=ret3]
+	1 -> 268
+	269 [label=SET]
+	268 -> 269
+	270 [label="="]
+	269 -> 270
+	271 [label=REGISTER]
+	270 -> 271
+	272 [label=RETORNO]
+	271 -> 272
+	273 [label=0]
+	271 -> 273
+	274 [label=REGISTER]
+	270 -> 274
+	275 [label=PARAMETRO]
+	274 -> 275
+	276 [label=1]
+	274 -> 276
+	277 [label=GOTO]
+	268 -> 277
+	278 [label=ret0]
+	277 -> 278
+}
