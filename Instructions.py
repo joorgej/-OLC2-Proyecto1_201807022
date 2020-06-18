@@ -94,7 +94,7 @@ class Set(Instruction):
         self.register = register
         self.data = data
 
-class If(Instruction): 
+class If(Instruction):
 
     def __init__(self, condition, goto):
         self.condition = condition

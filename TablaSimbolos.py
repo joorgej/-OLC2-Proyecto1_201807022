@@ -36,8 +36,8 @@ class Simbolo():
 
 class TablaSimbolos():
 
-    def __init__(self, simbolos = {}):
-        self.simbolos = simbolos
+    def __init__(self):
+        self.simbolos = {}
 
     def agregar(self, nombre, identificador, tipo_relativo, tipo_especifico, valor):
         simbolo = Simbolo(nombre, identificador, tipo_relativo, tipo_especifico, valor)
@@ -45,7 +45,19 @@ class TablaSimbolos():
     
     def obtener(self, nombre):
         if nombre in self.simbolos:
-            return self.simbolos[nombre]
+            if self.simbolos[nombre].tipo_especifico == TIPO_ESPECIFICO.PUNTERO:
+                return self.obtener(self.simbolos[nombre].valor)
+            else:
+                return self.simbolos[nombre]
+        else:
+            nombreDes = nombre.split('#')
+            if nombreDes[0] in self.simbolos:
+                if self.simbolos[nombreDes[0]].tipo_especifico == TIPO_ESPECIFICO.CADENA:
+                    if nombreDes[1].isnumeric():
+                        if int(nombreDes[1])<len(self.simbolos[nombreDes[0]].valor):
+                            ret = self.simbolos[nombreDes[0]]
+                            ret.valor = self.simbolos[nombreDes[0]].valor[int(nombreDes[1])]
+                            return ret
         return None
 
     def eliminar(self, nombre):
@@ -60,7 +72,7 @@ class TablaSimbolos():
     def graph(self, consola):
         simbo = ''
         for simb in self.simbolos:
-            simbo += '----------------------------------------------------------------------------------\n'
+            simbo += '--------------------------------------------------------------------------------------------------------------------------\n'
             if self.simbolos[simb].tipo_relativo == TIPO_RELATIVO.ARREGLO:
                 simbo += 'Nombre: ' + str(self.simbolos[simb].nombre).replace('#', ' -> ') + '\n'
             else:
@@ -73,6 +85,6 @@ class TablaSimbolos():
                 simbo += 'Valor: Instrucciones\n'
             else:
                 simbo += 'Valor: ' + str(self.simbolos[simb].valor) + '\n'
-            simbo += '----------------------------------------------------------------------------------\n'
+            simbo += '--------------------------------------------------------------------------------------------------------------------------\n'
 
         consola.setText(simbo)

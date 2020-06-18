@@ -1,5 +1,8 @@
+from PyQt5 import QtWidgets
+from PyQt5 import QtCore
 from Instructions import * 
 from TablaSimbolos import *
+
 
 ts = TablaSimbolos()
 flag = True 
@@ -13,13 +16,18 @@ def continuar():
     global flag 
     flag = True
 
-def addError(texto):
+def addError(texto, consola):
     global errores
-    errores += errores
+    prints = consola.toPlainText()[len(errores):]
+    errores += texto
+    consola.setText(errores + prints)
 
 def interpretar(AST, consola, salidaSimbolos):
-
-    erroresAnteriores = consola.toPlainText()
+    global ts
+    ts = None
+    ts = TablaSimbolos()
+    global errores
+    errores = consola.toPlainText()
 
     if AST.main != None: 
         ts.agregar(AST.main.name, AST.main.name, TIPO_RELATIVO.LABEL, TIPO_ESPECIFICO.MAIN, AST.main.instructions)
@@ -77,16 +85,15 @@ def interpretar(AST, consola, salidaSimbolos):
 
     i_main(AST.main, consola)
     ts.graph(salidaSimbolos)
-    prints = consola.toPlainText()[len(erroresAnteriores):]
-    consola.setText(erroresAnteriores + errores + prints)
+    
 
 
 def i_main(main, consola):
     for instruction in main.instructions:
-        if isinstance(instruction, Unset): i_unset(instruction)
-        elif isinstance(instruction, Set): i_set(instruction)
+        if isinstance(instruction, Unset): i_unset(instruction, consola)
+        elif isinstance(instruction, Set): i_set(instruction, consola)
         elif isinstance(instruction, Goto): 
-            gotoL = i_goto(instruction)
+            gotoL = i_goto(instruction, consola)
             if gotoL != None:
                 gotoL = i_label(gotoL, consola)
                 print(gotoL)
@@ -96,9 +103,9 @@ def i_main(main, consola):
                     gotoL = i_label(gotoL, consola)
             return
         elif isinstance(instruction, If): 
-            iflag = i_if(instruction)
+            iflag = i_if(instruction, consola)
             if iflag[0] == True:
-                gotoL = i_goto(instruction)
+                gotoL = i_goto(instruction, consola)
                 if gotoL != None:
                     gotoL = i_label(gotoL, consola)
                     print(gotoL)
@@ -108,76 +115,81 @@ def i_main(main, consola):
                         gotoL = i_label(gotoL, consola)
                 return
         elif isinstance(instruction, Print): i_print(instruction, consola)
-        elif isinstance(instruction, Exit): return
+        elif isinstance(instruction, Exit): 
+            parar() 
+            return
 
 def i_label(instructions, consola):
     for instruction in instructions:
-        if isinstance(instruction, Unset): i_unset(instruction)
-        elif isinstance(instruction, Set): i_set(instruction)
+        if isinstance(instruction, Unset): i_unset(instruction, consola)
+        elif isinstance(instruction, Set): i_set(instruction, consola)
         elif isinstance(instruction, Goto): 
-            gotoL = i_goto(instruction)
+            gotoL = i_goto(instruction, consola)
             if gotoL != None:
                 return gotoL
             return None
             
         elif isinstance(instruction, If): 
-            iflag = i_if(instruction)
+            iflag = i_if(instruction, consola)
             if iflag[0] == True:
-                gotoL = i_goto(iflag[1])
+                gotoL = i_goto(iflag[1], consola)
                 if gotoL != None:
                     return gotoL
                 
         elif isinstance(instruction, Print): i_print(instruction, consola)
-        elif isinstance(instruction, Exit): parar()
+        elif isinstance(instruction, Exit): 
+            parar()
+            return
         
     return None
 
-def i_unset(instruction):
+def i_unset(instruction, consola):
     if not ts.eliminar(instruction.register.name):
-        addError('ERROR SEMANTICO: No es posible eliminar el registro "'+str(instruction.register.name)+'", porque no ha sido declarado. \n')
+        addError('ERROR SEMANTICO: No es posible eliminar el registro "'+str(instruction.register.name)+'", porque no ha sido declarado. \n', consola)
 
 def i_print(instruction, consola):
     printed = ''
     if isinstance(instruction.register, Register):
         printed = ts.obtener(instruction.register.name)
     elif isinstance(instruction.register, Array):
-        printed = ts.obtener(get_array_name(instruction.register))
+        printed = ts.obtener(get_array_name(instruction.register, consola))
 
     if printed == None:
-        addError('ERROR SEMANTICO: Se intento imprimir un registro no declarado. \n')
+        addError('ERROR SEMANTICO: Se intento imprimir un registro no declarado. \n', consola)
     else:
         printed = printed.valor
+        consola.setText(consola.toPlainText() + '>> ' +str(printed) + '\n')
         
-    consola.setText(consola.toPlainText() + str(printed))
+    
 
-def i_goto(instruction):
+def i_goto(instruction, consola):
     goto = ts.obtener(instruction.label)
     if goto != None:
         return goto.valor
     else: 
-        addError('ERROR SEMANTICO: El label que se intentaba ejecutar no a sido declarado.\n')
+        addError('ERROR SEMANTICO: El label que se intentaba ejecutar no a sido declarado.\n', consola)
         return None
 
-def i_if(instruction):
+def i_if(instruction, consola):
     valor = [None, None]
 
     if isinstance(instruction.condition, Register) or isinstance(instruction.condition, Array) or isinstance(instruction.condition, Primary):
-        tempo = i_get_data(instruction.condition)
+        tempo = i_get_data(instruction.condition, consola)
         valor = tempo[0]
     elif isinstance(instruction.condition, AritmeticOperation):
-        tempo = i_aritmetic_operation(instruction.condition)
+        tempo = i_aritmetic_operation(instruction.condition, consola)
         valor = tempo[0]
     elif isinstance(instruction.condition, RelationalOperation):
-        tempo = i_relational_operation(instruction.condition)
+        tempo = i_relational_operation(instruction.condition, consola)
         valor = tempo[0]
     elif isinstance(instruction.condition, LogicOperation):
-        tempo = i_logic_operation(instruction.condition)
+        tempo = i_logic_operation(instruction.condition, consola)
         valor = tempo[0]
     elif isinstance(instruction.condition, BitxbitOperation):
-        tempo = i_bitxbit_operation(instruction.condition)
+        tempo = i_bitxbit_operation(instruction.condition, consola)
         valor = tempo[0]
     elif isinstance(instruction.condition, Cast):
-        tempo = i_cast(instruction.condition)
+        tempo = i_cast(instruction.condition, consola)
         valor = tempo[0]
 
     if valor == 0:
@@ -185,11 +197,11 @@ def i_if(instruction):
     elif valor == 1:
         return [True, instruction.goto]
     else:
-        addError('ERROR SEMANTICO: El valor obtenido en la condicion de la instruccion if, no es un valor valido. \n')
+        addError('ERROR SEMANTICO: El valor obtenido en la condicion de la instruccion if, no es un valor valido. \n', consola)
         return [False, None]
 
 
-def i_set(instruction):
+def i_set(instruction, consola):
 
     nombre = None
     identificador = None
@@ -208,44 +220,71 @@ def i_set(instruction):
         elif instruction.register.type_ == REGISTER.PUNTERO: tipo_relativo = TIPO_RELATIVO.PUNTERO
 
     elif isinstance(instruction.register, Array):
-        nombre = get_array_name(instruction.register) 
+        nombre = get_array_name(instruction.register, consola) 
         identificador = instruction.register.position
         tipo_relativo = TIPO_RELATIVO.ARREGLO
 
 
     if isinstance(instruction.data, Register) or isinstance(instruction.data, Array) or isinstance(instruction.data, Primary):
-        tempo = i_get_data(instruction.data)
+        tempo = i_get_data(instruction.data, consola)
         valor = tempo[0]
         tipo_especifico = tempo[1]
     elif isinstance(instruction.data, AritmeticOperation):
-        tempo = i_aritmetic_operation(instruction.data)
+        tempo = i_aritmetic_operation(instruction.data, consola)
         valor = tempo[0]
         tipo_especifico = tempo[1]
     elif isinstance(instruction.data, RelationalOperation):
-        tempo = i_relational_operation(instruction.data)
+        tempo = i_relational_operation(instruction.data, consola)
         valor = tempo[0]
         tipo_especifico = tempo[1]
     elif isinstance(instruction.data, LogicOperation):
-        tempo = i_logic_operation(instruction.data)
+        tempo = i_logic_operation(instruction.data, consola)
         valor = tempo[0]
         tipo_especifico = tempo[1]
     elif isinstance(instruction.data, BitxbitOperation):
-        tempo = i_bitxbit_operation(instruction.data)
+        tempo = i_bitxbit_operation(instruction.data, consola)
         valor = tempo[0]
         tipo_especifico = tempo[1]
     elif isinstance(instruction.data, Cast):
-        tempo = i_cast(instruction.data)
+        tempo = i_cast(instruction.data, consola)
         valor = tempo[0]
         tipo_especifico = tempo[1]
     elif isinstance(instruction.data, ArrayDeclaration):
         valor = 'Arreglo'
         tipo_especifico = TIPO_ESPECIFICO.ARRAY
+    elif isinstance(instruction.data, Read):
+        tempo = i_read(consola)
+        valor = tempo[0]
+        tipo_especifico = tempo[1]
+    elif isinstance(instruction.data, Pointer):
+        valor = i_puntero(instruction.data, consola)
+        tipo_especifico = TIPO_ESPECIFICO.PUNTERO    
     
+    if valor == None:
+        addError('ERROR SINTACTICO: No se encontro el valor que se deseaba agregar el registro '+nombre+'\n', consola)
+    else:
+        ts.agregar(nombre, identificador, tipo_relativo, tipo_especifico, valor)
 
-    ts.agregar(nombre, identificador, tipo_relativo, tipo_especifico, valor)
+
+def i_read(consola):
+    texto, ok = QtWidgets.QInputDialog().getText(None, 'Read', 'Cadena a registrar: ', QtWidgets.QLineEdit.Normal,
+                                        QtCore.QDir().home().dirName())
+    if ok and texto:
+        return [str(texto), TIPO_ESPECIFICO.CADENA]
+    return [None, TIPO_ESPECIFICO.CADENA]
+
+def i_puntero(instruction, consola):
+    if isinstance(instruction.register, Register):
+        return instruction.register.name
+
+    elif isinstance(instruction.register, Array):
+        return get_array_name(instruction.register, consola) 
+    
+    addError('ERROR SINTACTICO: El registro al que se intenta apuntar no es valido', consola)
+    return None
 
 
-def i_get_data(expression):
+def i_get_data(expression, consola):
 
     data = [None, None]
 
@@ -254,13 +293,13 @@ def i_get_data(expression):
         if temp != None:
             data = [temp.valor, temp.tipo_especifico]
         else: 
-            addError('ERROR SEMANTICO: La variable "'+expression.name+'", no a sido declarada.\n')
+            addError('ERROR SEMANTICO: La variable "'+expression.name+'", no a sido declarada.\n', consola)
     elif isinstance(expression, Array):
-        temp = ts.obtener(get_array_name(expression))
+        temp = ts.obtener(get_array_name(expression, consola))
         if temp != None:
             data = [temp.valor, temp.tipo_especifico]
         else: 
-            addError('ERROR SEMANTICO: La posicion especificada del arreglo "'+expression.name+'", no a sido declarada.\n')
+            addError('ERROR SEMANTICO: La posicion especificada del arreglo "'+expression.name+'", no a sido declarada.\n', consola)
     elif isinstance(expression, Primary):
         tipo = ''
         if expression.type_ == 'ENTERO': tipo = TIPO_ESPECIFICO.ENTERO
@@ -271,10 +310,10 @@ def i_get_data(expression):
     return data
     
 
-def i_aritmetic_operation(expression):
+def i_aritmetic_operation(expression, consola):
     
-    dato1 = i_get_data(expression.expression1)
-    dato2 = i_get_data(expression.expression2)
+    dato1 = i_get_data(expression.expression1, consola)
+    dato2 = i_get_data(expression.expression2, consola)
     
     if expression.operator == ARITMETIC_OPERATION.SUMA:
         if (dato1[1] == TIPO_ESPECIFICO.CADENA or dato1[1] == TIPO_ESPECIFICO.CARACTER) and (dato2[1] == TIPO_ESPECIFICO.CADENA or dato1[1] == TIPO_ESPECIFICO.CARACTER):
@@ -317,13 +356,13 @@ def i_aritmetic_operation(expression):
         if dato1[1] == TIPO_ESPECIFICO.ENTERO or dato1[1] == TIPO_ESPECIFICO.DECIMAL:
             return [dato1[0] * -1, dato1[1]]
 
-    addError('ERROR SEMANTICO: Los tipos de dato que se intentaron operar no son compatibles. \n')
+    addError('ERROR SEMANTICO: Los tipos de dato que se intentaron operar no son compatibles. \n', consola)
     return [None, None]
 
-def i_relational_operation(expression):
+def i_relational_operation(expression, consola):
 
-    dato1 = i_get_data(expression.expression1)
-    dato2 = i_get_data(expression.expression2)
+    dato1 = i_get_data(expression.expression1, consola)
+    dato2 = i_get_data(expression.expression2, consola)
     if expression.operator == RELATIONAL_OPERATION.ES_IGUAL:
         if dato1[0] == dato2[0]:
             return [1, TIPO_ESPECIFICO.ENTERO]
@@ -367,13 +406,13 @@ def i_relational_operation(expression):
         except:
             'nada'
 
-    addError('ERROR SEMANTICO: Los tipos de dato que se intentaron operar no son compatibles. \n')
+    addError('ERROR SEMANTICO: Los tipos de dato que se intentaron operar no son compatibles. \n', consola)
     return[None, None]
 
-def i_logic_operation(expression):
+def i_logic_operation(expression, consola):
 
-    dato1 = i_get_data(expression.expression1)
-    dato2 = i_get_data(expression.expression2)
+    dato1 = i_get_data(expression.expression1, consola)
+    dato2 = i_get_data(expression.expression2, consola)
 
     if (dato1[0]==1 or dato1[0]==0) and (dato2[0]==1 or dato2[0]==0):
         if expression.operator == LOGIC_OPERATION.AND:
@@ -397,13 +436,13 @@ def i_logic_operation(expression):
             else:
                 return [0, TIPO_ESPECIFICO.ENTERO]
     else:
-        addError('ERROR SEMANTICO: Los tipos de dato que se intentaron operar no son compatibles. \n')
+        addError('ERROR SEMANTICO: Los tipos de dato que se intentaron operar no son compatibles. \n', consola)
         return[None, None]
 
-def i_bitxbit_operation(expression):
+def i_bitxbit_operation(expression, consola):
 
-    dato1 = i_get_data(expression.expression1)
-    dato2 = i_get_data(expression.expression2)
+    dato1 = i_get_data(expression.expression1, consola)
+    dato2 = i_get_data(expression.expression2, consola)
     if expression.operator == BITXBIT_OPERATION.BIT_NOT:
         if dato1[1] == TIPO_ESPECIFICO.ENTERO:
             return [ ~int(dato1[0]), TIPO_ESPECIFICO.ENTERO]
@@ -423,12 +462,12 @@ def i_bitxbit_operation(expression):
         if dato1[1] == TIPO_ESPECIFICO.ENTERO and dato2[1] == TIPO_ESPECIFICO.ENTERO:
             return [dato1[0] >> dato2[0], TIPO_ESPECIFICO.ENTERO]
     
-    addError('ERROR SEMANTICO: Los tipos de dato que se intentaron operar no son compatibles. \n')
+    addError('ERROR SEMANTICO: Los tipos de dato que se intentaron operar no son compatibles. \n', consola)
     return[None, None]
 
-def i_cast(expression):
+def i_cast(expression, consola):
 
-    dato = i_get_data(expression.data)
+    dato = i_get_data(expression.data, consola)
 
     if expression.casting == DATA_TYPE.INTEGER:
         if dato[1] == TIPO_ESPECIFICO.DECIMAL:
@@ -461,12 +500,12 @@ def i_cast(expression):
         elif dato[1] == TIPO_ESPECIFICO.ARRAY:
             return [0, TIPO_ESPECIFICO.CARACTER]
 
-    addError('ERROR SEMANTICO: El casteo entre los tipos indicados nos es soportado por el lenguaje. \n')
+    addError('ERROR SEMANTICO: El casteo entre los tipos indicados nos es soportado por el lenguaje. \n', consola)
     return[None, None]
 
-def get_array_name(array):
+def get_array_name(array, consola):
     name = array.name
     for index in array.indexs:
         name += '#'
-        name += str(i_get_data(index.index)[0]) 
+        name += str(i_get_data(index.index, consola)[0]) 
     return name 

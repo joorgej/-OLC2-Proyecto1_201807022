@@ -9,7 +9,7 @@ def inc():
     index += 1
     return index
 
-def GraphAST(AST):
+def GraphAST(AST, consola):
     global dot
     dot = Digraph()
     dot.attr(splines = 'false')
@@ -22,7 +22,12 @@ def GraphAST(AST):
         labels = [program.main] + program.labels
         for label in labels:
             AST_Label(programIndex, label)
-    dot.view()
+
+    try:
+        dot.view()
+    except:
+        consola.setText('ERROR: No fue posible realizar el reporte AST por algun error desconocido.')
+
 
                     
 def AST_Label(father, label):

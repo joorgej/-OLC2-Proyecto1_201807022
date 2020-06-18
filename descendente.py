@@ -193,7 +193,7 @@ def t_error(t):
 
 def p_init(t):
     'init           : program'
-    t[0] = [t[1][0], 'init: program \n'+t[1][1]]
+    t[0] = [t[1][0], 'init → program \n'+t[1][1]]
 
 
 def p_init_vacio(t):
@@ -203,12 +203,12 @@ def p_init_vacio(t):
 def p_program(t):
     'program        : main labels'
     t[2][0].insert(0,t[1][0])
-    t[0] = [Program(t[2][0]), 'program: main labels \n' + t[1][1] + t[2][1]]
+    t[0] = [Program(t[2][0]), 'program → main labels \n' + t[1][1] + t[2][1]]
 
 
 def p_main(t):
     'main           : MAIN DOS_PUNTOS instructions'
-    t[0] = [Main(t[3][0]), 'main: MAIN DOS_PUNTOS instructions \n' + t[3][1]]
+    t[0] = [Main(t[3][0]), 'main → MAIN DOS_PUNTOS instructions \n' + t[3][1]]
 
 
 def p_main_error(t):
@@ -218,16 +218,16 @@ def p_main_error(t):
 def p_labels(t):
     'labels         : label labels'
     t[2][0].insert(0,t[1][0])
-    t[0] = [t[2][0], 'labels: label labels \n'+ t[1][1] + t[2][1]]
+    t[0] = [t[2][0], 'labels → label labels \n'+ t[1][1] + t[2][1]]
 
 
 def p_labels_epsilon(t):
     'labels         : '
-    t[0] = [[], 'labels: ε \n']
+    t[0] = [[], 'labels → ε \n']
 
 def p_label(t):
     'label          : LABEL DOS_PUNTOS instructions'
-    t[0] = [Label(t[1], t[3][0]), 'label: LABEL DOS_PUNTOS instructions \n' + t[3][1]]
+    t[0] = [Label(t[1], t[3][0]), 'label → LABEL DOS_PUNTOS instructions \n' + t[3][1]]
 
 def p_label_error(t):
     'label          : error instructions'
@@ -237,47 +237,47 @@ def p_label_error(t):
 def p_instructions(t):
     'instructions   : instruction instructionsprima'
     t[2][0].insert(0, t[1][0])
-    t[0] = [t[2][0], 'instructions: instruction instructionsprima \n' + t[1][1] + t[2][1]]
+    t[0] = [t[2][0], 'instructions → instruction instructionsprima \n' + t[1][1] + t[2][1]]
 
 
 def p_instructionsprima(t):
     'instructionsprima   : instruction instructionsprima'
     t[2][0].insert(0, t[1][0])
-    t[0] = [t[2][0], 'instructionsprima: instruction instructionsprima \n' + t[1][1] + t[2][1]]
+    t[0] = [t[2][0], 'instructionsprima → instruction instructionsprima \n' + t[1][1] + t[2][1]]
 
 
 def p_instructionsprima_epsilon(t):
     'instructionsprima   : '
-    t[0] = [[], 'instructionsprima: ε \n']
+    t[0] = [[], 'instructionsprima → ε \n']
 
 
 def p_instruction_exit(t):
     'instruction    : exit PUNTO_COMA'
-    t[0] = [t[1][0],'instruction: exit PUNTO_COMA \n' + t[1][1]]
+    t[0] = [t[1][0],'instruction → exit PUNTO_COMA \n' + t[1][1]]
 
 def p_instruction_unset(t):
     'instruction    : unset PUNTO_COMA'
-    t[0] = [t[1][0], 'instruction: unset PUNTO_COMA \n' + t[1][1]]
+    t[0] = [t[1][0], 'instruction → unset PUNTO_COMA \n' + t[1][1]]
 
 
 def p_instruction_print(t):
     'instruction    : print PUNTO_COMA'
-    t[0] = [t[1][0], 'instruction: print PUNTO_COMA \n' + t[1][1]]
+    t[0] = [t[1][0], 'instruction → print PUNTO_COMA \n' + t[1][1]]
 
 
 def p_instruction_if(t):
     'instruction    : if PUNTO_COMA'
-    t[0] = [t[1][0], 'instruction: if PUNTO_COMA \n' + t[1][1]]
+    t[0] = [t[1][0], 'instruction → if PUNTO_COMA \n' + t[1][1]]
 
 
 def p_instruction_set(t):
     'instruction    : set PUNTO_COMA'
-    t[0] = [t[1][0], 'instruction: set PUNTO_COMA \n' + t[1][1]]
+    t[0] = [t[1][0], 'instruction → set PUNTO_COMA \n' + t[1][1]]
 
 
 def p_instruction_goto(t):
     'instruction    : goto PUNTO_COMA'
-    t[0] = [t[1][0], 'instruction: goto PUNTO_COMA \n' + t[1][1]]
+    t[0] = [t[1][0], 'instruction → goto PUNTO_COMA \n' + t[1][1]]
 
 
 def p_instruction_error(t):
@@ -286,189 +286,189 @@ def p_instruction_error(t):
 
 def p_exit(t):
     'exit           : EXIT'
-    t[0] = [Exit(), 'exit: EXIT \n']
+    t[0] = [Exit(), 'exit → EXIT \n']
 
 
 def p_goto(t):
     'goto           : GOTO LABEL'
-    t[0] = [Goto(t[2]), 'goto: GOTO LABEL \n']
+    t[0] = [Goto(t[2]), 'goto → GOTO LABEL \n']
 
 
 def p_unset(t):
     'unset          : UNSET PAR_IZQ var PAR_DER'
-    t[0] = [Unset(t[3][0]), 'unset: UNSET PAR_IZQ var PAR_DER \n' + t[3][1]]
+    t[0] = [Unset(t[3][0]), 'unset → UNSET PAR_IZQ var PAR_DER \n' + t[3][1]]
 
 
 def p_print(t):
     'print          : PRINT PAR_IZQ var PAR_DER'
-    t[0] = [Print(t[3][0]), 'print: PRINT PAR_IZQ var PAR_DER \n' + t[3][1]]
+    t[0] = [Print(t[3][0]), 'print → PRINT PAR_IZQ var PAR_DER \n' + t[3][1]]
 
 
 def p_if(t):
     'if             : IF PAR_IZQ condition PAR_DER goto'
-    t[0] = [If(t[3][0], t[5][0]), 'if: IF PAR_IZQ condition PAR_DER goto \n' + t[3][1] + t[5][1]]
+    t[0] = [If(t[3][0], t[5][0]), 'if → IF PAR_IZQ condition PAR_DER goto \n' + t[3][1] + t[5][1]]
 
 
 def p_condition_expression(t):
     'condition      : expression'
-    t[0] = [t[1][0], 'condition: expression \n' + t[1][1]]
+    t[0] = [t[1][0], 'condition → expression \n' + t[1][1]]
 
 
 def p_condition_var(t):
     'condition      : var'
-    t[0] = [t[1][0], 'condition: var \n' + t[1][1]]
+    t[0] = [t[1][0], 'condition → var \n' + t[1][1]]
 
 
 def p_set(t):
     'set            : var IGUAL assignation'
-    t[0] = [Set(t[1][0], t[3][0]), 'set: var IGUAL assignation \n' + t[1][1] + t[3][1]]
+    t[0] = [Set(t[1][0], t[3][0]), 'set → var IGUAL assignation \n' + t[1][1] + t[3][1]]
 
 
 def p_var(t):
     'var            : register'
-    t[0] = [t[1][0], 'var: register \n' + t[1][1]]
+    t[0] = [t[1][0], 'var → register \n' + t[1][1]]
 
 
 def p_var_array(t):
     'var            : register positions'
-    t[0] = [Array(t[1][0].name, t[1][0].type_, t[1][0].position, t[2][0]), 'var: register positions \n' + t[1][1] + t[2][1]]
+    t[0] = [Array(t[1][0].name, t[1][0].type_, t[1][0].position, t[2][0]), 'var → register positions \n' + t[1][1] + t[2][1]]
 
 
 def p_register_temporal(t):
     'register       : TEMPORAL'
-    t[0] = [Register('$t'+t[1], REGISTER.TEMPORAL, t[1]), 'register: TEMPORAL \n']
+    t[0] = [Register('$t'+t[1], REGISTER.TEMPORAL, t[1]), 'register → TEMPORAL \n']
 
 
 def p_register_parametro(t):
     'register       : PARAMETRO'
-    t[0] = [Register('$a'+t[1], REGISTER.PARAM, t[1]), 'register: PARAMETRO \n']
+    t[0] = [Register('$a'+t[1], REGISTER.PARAM, t[1]), 'register → PARAMETRO \n']
 
 
 def p_register_devuelto(t):
     'register       : DEVUELTO'
-    t[0] = [Register('$v'+t[1], REGISTER.DEVUELTO, t[1]), 'register: DEVUELTO \n']
+    t[0] = [Register('$v'+t[1], REGISTER.DEVUELTO, t[1]), 'register → DEVUELTO \n']
 
 
 def p_register_retorno(t):
     'register       : RETORNO'
-    t[0] = [Register('$'+t[1], REGISTER.RETURNED, t[1]), 'register: RETORNO \n']
+    t[0] = [Register('$'+t[1], REGISTER.RETURNED, t[1]), 'register → RETORNO \n']
 
 
 def p_register_pila(t):
     'register       : PILA'
-    t[0] = [Register('$s'+t[1], REGISTER.PILA, t[1]), 'register: PILA \n']
+    t[0] = [Register('$s'+t[1], REGISTER.PILA, t[1]), 'register → PILA \n']
 
 
 def p_register_puntero(t):
     'register       : PUNTERO'
-    t[0] = [Register('$'+t[1], REGISTER.PUNTERO, t[1]), 'register: PUNTERO \n']
+    t[0] = [Register('$'+t[1], REGISTER.PUNTERO, t[1]), 'register → PUNTERO \n']
     
 
 def p_positions(t):
     'positions      : position positionsprima'
     t[2][0].insert(0, t[1][0])
-    t[0] = [t[2][0], 'positions: position positionsprima \n' + t[1][1] + t[2][1]]
+    t[0] = [t[2][0], 'positions → position positionsprima \n' + t[1][1] + t[2][1]]
 
 
 def p_positionsprima(t):
     'positionsprima : position positionsprima'
     t[2][0].insert(0, t[1][0])
-    t[0] = [t[2][0], 'positionsprima: position positionsprima \n' + t[1][1] + t[2][1]]
+    t[0] = [t[2][0], 'positionsprima → position positionsprima \n' + t[1][1] + t[2][1]]
 
 
 def p_positionsprima_epsilon(t):
     'positionsprima : '
-    t[0] = [[], 'positionsprima: ε \n']
+    t[0] = [[], 'positionsprima → ε \n']
 
 
 def p_position(t):
     'position       : COR_IZQ cont COR_DER'
-    t[0] = [Index(t[2][0]), 'position: COR_IZQ cont COR_DER \n' + t[2][1]]
+    t[0] = [Index(t[2][0]), 'position → COR_IZQ cont COR_DER \n' + t[2][1]]
 
 
 def p_primary_entero(t):
     'primary        : ENTERO'
-    t[0] = [Primary(t.slice[1].type, t[1]), 'primary: ENTERO \n']
+    t[0] = [Primary(t.slice[1].type, t[1]), 'primary → ENTERO \n']
 
 
 def p_primary_cadena(t):
     'primary        : CADENA'
-    t[0] = [Primary(t.slice[1].type, t[1]), 'primary: CADENA \n']
+    t[0] = [Primary(t.slice[1].type, t[1]), 'primary → CADENA \n']
 
 
 def p_primary_caracter(t):
     'primary        : CARACTER'
-    t[0] = [Primary(t.slice[1].type, t[1]), 'primary: CARACTER \n']
+    t[0] = [Primary(t.slice[1].type, t[1]), 'primary → CARACTER \n']
 
 
 def p_primary_decimal(t):
     'primary        : DECIMAL'
-    t[0] = [Primary(t.slice[1].type, t[1]), 'primary: DECIMAL \n']
+    t[0] = [Primary(t.slice[1].type, t[1]), 'primary → DECIMAL \n']
 
 
 def p_assignation_data(t):
     'assignation    : data'
-    t[0] = [t[1][0], 'assignation: data \n' + t[1][1]]
+    t[0] = [t[1][0], 'assignation → data \n' + t[1][1]]
 
 
 def p_assignation_array(t):
     'assignation    : array'
-    t[0] = [t[1][0], 'assignation: array \n' + t[1][1]]
+    t[0] = [t[1][0], 'assignation → array \n' + t[1][1]]
 
 
 def p_assignation_read(t):
     'assignation    : read'
-    t[0] = [t[1][0], 'assignation: read \n' + t[1][1]]
+    t[0] = [t[1][0], 'assignation → read \n' + t[1][1]]
 
 
 def p_assignation_cast(t):
     'assignation    : cast'
-    t[0] = [t[1][0], 'assignation: cast \n' + t[1][1]]
+    t[0] = [t[1][0], 'assignation → cast \n' + t[1][1]]
 
 
 def p_assignation_expression(t):
     'assignation    : expression'
-    t[0] = [t[1][0], 'assignation: expression \n' + t[1][1]]
+    t[0] = [t[1][0], 'assignation → expression \n' + t[1][1]]
 
 
 def p_assignation_pointer(t):
     'assignation    : pointer'
-    t[0] = [t[1][0], 'assignation: pointer \n' + t[1][1]]
+    t[0] = [t[1][0], 'assignation → pointer \n' + t[1][1]]
 
 
 def p_data_primary(t):
     'data           : primary'
-    t[0] = [t[1][0], 'data: primary \n' + t[1][1]]
+    t[0] = [t[1][0], 'data → primary \n' + t[1][1]]
     
 
 def p_data_var(t):
     'data           : var'
-    t[0] = [t[1][0], 'data: var \n' + t[1][1]]
+    t[0] = [t[1][0], 'data → var \n' + t[1][1]]
 
 
 def p_cont_primary(t):
     'cont           : primary'
-    t[0] = [t[1][0], 'cont: primary \n' + t[1][1]]
+    t[0] = [t[1][0], 'cont → primary \n' + t[1][1]]
 
 
 def p_cont_register(t):
     'cont           : register'
-    t[0] = [t[1][0], 'cont: register \n' + t[1][1]]
+    t[0] = [t[1][0], 'cont → register \n' + t[1][1]]
 
 
 def p_array(t):
     'array          : ARRAY PAR_IZQ PAR_DER'
-    t[0] = [ArrayDeclaration(), 'array: ARRAY PAR_IZQ PAR_DER \n']
+    t[0] = [ArrayDeclaration(), 'array → ARRAY PAR_IZQ PAR_DER \n']
 
 
 def p_read(t):
     'read           : READ PAR_IZQ PAR_DER'
-    t[0] = [Read(), 'read: READ PAR_IZQ PAR_DER']
+    t[0] = [Read(), 'read → READ PAR_IZQ PAR_DER']
 
 
 def p_cast(t):
     'cast           : PAR_IZQ type PAR_DER var'
-    t[0] = [Cast(t[2][0], t[4][0]), 'cast: PAR_IZQ type PAR_DER var \n' + t[2][1] + t[4][1]]
+    t[0] = [Cast(t[2][0], t[4][0]), 'cast → PAR_IZQ type PAR_DER var \n' + t[2][1] + t[4][1]]
 
 
 def p_type(t):
@@ -476,31 +476,31 @@ def p_type(t):
                     | INT
                     | CHAR'''
     if t[1] == 'float': 
-        t[0] = [DATA_TYPE.FLOAT, 'type: FLOAT \n']
+        t[0] = [DATA_TYPE.FLOAT, 'type → FLOAT \n']
     elif t[1] == 'int': 
-        t[0] = [DATA_TYPE.INTEGER, 'type: INT \n']
+        t[0] = [DATA_TYPE.INTEGER, 'type → INT \n']
     elif t[1] == 'char': 
-        t[0] = [DATA_TYPE.CHARACTER, 'type: CHAR \n']
+        t[0] = [DATA_TYPE.CHARACTER, 'type → CHAR \n']
 
 
 def p_expression_aritmetic(t):
     'expression     : aritmetic'
-    t[0] = [t[1][0], 'expression: aritmetic \n' + t[1][1]]
+    t[0] = [t[1][0], 'expression → aritmetic \n' + t[1][1]]
 
 
 def p_expression_logical(t):
     'expression     : logical'
-    t[0] = [t[1][0], 'expression: logical \n' + t[1][1]]
+    t[0] = [t[1][0], 'expression → logical \n' + t[1][1]]
 
 
 def p_expression_bitxbit(t):
     'expression     : bitxbit'
-    t[0] = [t[1][0], 'expression: bitxbit \n' + t[1][1]]
+    t[0] = [t[1][0], 'expression → bitxbit \n' + t[1][1]]
 
 
 def p_expression_ralational(t):
     'expression     : ralational'
-    t[0] = [t[1][0], 'expression: ralational \n' + t[1][1]]
+    t[0] = [t[1][0], 'expression → ralational \n' + t[1][1]]
 
 
 def p_aritmetic(t):
@@ -512,19 +512,19 @@ def p_aritmetic(t):
                     | RESTA data
                     | ABS PAR_IZQ data PAR_DER'''
     if t[2] == '+':
-        t[0] = [AritmeticOperation(ARITMETIC_OPERATION.SUMA, t[1][0], t[3][0]), 'aritmetic: data SUMA data \n' + t[1][1] + t[3][1]]
+        t[0] = [AritmeticOperation(ARITMETIC_OPERATION.SUMA, t[1][0], t[3][0]), 'aritmetic → data SUMA data \n' + t[1][1] + t[3][1]]
     elif t[2] == '-':
-        t[0] = [AritmeticOperation(ARITMETIC_OPERATION.RESTA, t[1][0], t[3][0]), 'aritmetic: data RESTA data \n' + t[1][1] + t[3][1]]
+        t[0] = [AritmeticOperation(ARITMETIC_OPERATION.RESTA, t[1][0], t[3][0]), 'aritmetic → data RESTA data \n' + t[1][1] + t[3][1]]
     elif t[2] == '/':
-        t[0] = [AritmeticOperation(ARITMETIC_OPERATION.DIV, t[1][0], t[3][0]), 'aritmetic: data MULT data \n' + t[1][1] + t[3][1]]
+        t[0] = [AritmeticOperation(ARITMETIC_OPERATION.DIV, t[1][0], t[3][0]), 'aritmetic → data MULT data \n' + t[1][1] + t[3][1]]
     elif t[2] == '*':
-        t[0] = [AritmeticOperation(ARITMETIC_OPERATION.MULT, t[1][0], t[3][0]), 'aritmetic: data DIV data \n' + t[1][1] + t[3][1]]
+        t[0] = [AritmeticOperation(ARITMETIC_OPERATION.MULT, t[1][0], t[3][0]), 'aritmetic → data DIV data \n' + t[1][1] + t[3][1]]
     elif t[2] == '%':
-        t[0] = [AritmeticOperation(ARITMETIC_OPERATION.MOD, t[1][0], t[3][0]), 'aritmetic: data MOD data \n' + t[1][1] + t[3][1]]
+        t[0] = [AritmeticOperation(ARITMETIC_OPERATION.MOD, t[1][0], t[3][0]), 'aritmetic → data MOD data \n' + t[1][1] + t[3][1]]
     elif t[1] == '-':
-        t[0] = [AritmeticOperation(ARITMETIC_OPERATION.NEG, t[2][0], None), 'aritmetic: RESTA data \n' + t[2][1]]
+        t[0] = [AritmeticOperation(ARITMETIC_OPERATION.NEG, t[2][0], None), 'aritmetic → RESTA data \n' + t[2][1]]
     elif t[1] == 'abs':
-        t[0] = [AritmeticOperation(ARITMETIC_OPERATION.ABS, t[3][0], None), 'aritmetic: ABS PAR_IZQ data PAR_DER \n' + t[3][1]]
+        t[0] = [AritmeticOperation(ARITMETIC_OPERATION.ABS, t[3][0], None), 'aritmetic → ABS PAR_IZQ data PAR_DER \n' + t[3][1]]
 
 
 def p_logical(t):
@@ -533,13 +533,13 @@ def p_logical(t):
                     | data XOR data
                     | NOT data'''
     if t[2] == '&&':
-        t[0] = [LogicOperation(LOGIC_OPERATION.AND, t[1][0], t[3][0]), 'logical: data AND data \n' + t[1][1] + t[3][1]]
+        t[0] = [LogicOperation(LOGIC_OPERATION.AND, t[1][0], t[3][0]), 'logical → data AND data \n' + t[1][1] + t[3][1]]
     elif t[2] == '||':
-        t[0] = [LogicOperation(LOGIC_OPERATION.OR, t[1][0], t[3][0]), 'logical: data OR data \n' + t[1][1] + t[3][1]]
+        t[0] = [LogicOperation(LOGIC_OPERATION.OR, t[1][0], t[3][0]), 'logical → data OR data \n' + t[1][1] + t[3][1]]
     elif t[2] == 'xor':
-        t[0] = [LogicOperation(LOGIC_OPERATION.XOR, t[1][0], t[3][0]), 'logical: data XOR data \n' + t[1][1]]
+        t[0] = [LogicOperation(LOGIC_OPERATION.XOR, t[1][0], t[3][0]), 'logical → data XOR data \n' + t[1][1]]
     elif t[1] == '!':
-        t[0] = [LogicOperation(LOGIC_OPERATION.NOT, t[2][0], None), 'logical: NOT data \n' + t[2][1]]
+        t[0] = [LogicOperation(LOGIC_OPERATION.NOT, t[2][0], None), 'logical → NOT data \n' + t[2][1]]
     
 
 
@@ -551,17 +551,17 @@ def p_bitxbit(t):
                     | data SHIFT_IZQ data
                     | NOT_BIT data'''
     if t[2] == '&':
-        t[0] = [BitxbitOperation(BITXBIT_OPERATION.BIT_AND, t[1][0], t[3][0]), 'bitxbit: data AND_BIT data \n' + t[1][1] + t[3][1]]
+        t[0] = [BitxbitOperation(BITXBIT_OPERATION.BIT_AND, t[1][0], t[3][0]), 'bitxbit → data AND_BIT data \n' + t[1][1] + t[3][1]]
     elif t[2] == '|':
-        t[0] = [BitxbitOperation(BITXBIT_OPERATION.BIT_OR, t[1][0], t[3][0]), 'bitxbit: data OR_BIT data \n' + t[1][1] + t[3][1]]
+        t[0] = [BitxbitOperation(BITXBIT_OPERATION.BIT_OR, t[1][0], t[3][0]), 'bitxbit → data OR_BIT data \n' + t[1][1] + t[3][1]]
     elif t[2] == '^':
-        t[0] = [BitxbitOperation(BITXBIT_OPERATION.BIT_XOR, t[1][0], t[3][0]), 'bitxbit: data XOR_BIT data \n' + t[1][1] + t[3][1]]
+        t[0] = [BitxbitOperation(BITXBIT_OPERATION.BIT_XOR, t[1][0], t[3][0]), 'bitxbit → data XOR_BIT data \n' + t[1][1] + t[3][1]]
     elif t[2] == '<<':
-        t[0] = [BitxbitOperation(BITXBIT_OPERATION.SHIFT_IZQ, t[1][0], t[3][0]), 'bitxbit: data SHIFT_DER data \n' + t[1][1] + t[3][1]]
+        t[0] = [BitxbitOperation(BITXBIT_OPERATION.SHIFT_IZQ, t[1][0], t[3][0]), 'bitxbit → data SHIFT_DER data \n' + t[1][1] + t[3][1]]
     elif t[2] == '>>':
-        t[0] = [BitxbitOperation(BITXBIT_OPERATION.SHIFT_DER, t[1][0], t[3][0]), 'bitxbit: data SHIFT_IZQ data \n' + t[1][1] + t[3][1]]
+        t[0] = [BitxbitOperation(BITXBIT_OPERATION.SHIFT_DER, t[1][0], t[3][0]), 'bitxbit → data SHIFT_IZQ data \n' + t[1][1] + t[3][1]]
     elif t[1] == '~':
-        t[0] = [BitxbitOperation(BITXBIT_OPERATION.BIT_NOT, t[2][0], None), 'bitxbit: NOT_BIT data \n' + t[2][1]]
+        t[0] = [BitxbitOperation(BITXBIT_OPERATION.BIT_NOT, t[2][0], None), 'bitxbit → NOT_BIT data \n' + t[2][1]]
     
 
 def p_relational(t):
@@ -572,22 +572,22 @@ def p_relational(t):
                     | data MAYOR_IGUAL data
                     | data MENOR_IGUAL data'''
     if t[2] == '==':
-        t[0] = [RelationalOperation(RELATIONAL_OPERATION.ES_IGUAL, t[1][0], t[3][0]), 'ralational: data ES_IGUAL data \n' + t[1][1] + t[3][1]]
+        t[0] = [RelationalOperation(RELATIONAL_OPERATION.ES_IGUAL, t[1][0], t[3][0]), 'ralational → data ES_IGUAL data \n' + t[1][1] + t[3][1]]
     elif t[2] == '!=':
-        t[0] = [RelationalOperation(RELATIONAL_OPERATION.NO_IGUAL, t[1][0], t[3][0]), 'ralational: data NO_IGUAL data \n' + t[1][1] + t[3][1]]
+        t[0] = [RelationalOperation(RELATIONAL_OPERATION.NO_IGUAL, t[1][0], t[3][0]), 'ralational → data NO_IGUAL data \n' + t[1][1] + t[3][1]]
     elif t[2] == '>':
-        t[0] = [RelationalOperation(RELATIONAL_OPERATION.MAYOR, t[1][0], t[3][0]), 'ralational: data MAYOR data \n' + t[1][1] + t[3][1]]
+        t[0] = [RelationalOperation(RELATIONAL_OPERATION.MAYOR, t[1][0], t[3][0]), 'ralational → data MAYOR data \n' + t[1][1] + t[3][1]]
     elif t[2] == '<':
-        t[0] = [RelationalOperation(RELATIONAL_OPERATION.MENOR, t[1][0], t[3][0]), 'ralational: data MENOR data \n' + t[1][1] + t[3][1]]
+        t[0] = [RelationalOperation(RELATIONAL_OPERATION.MENOR, t[1][0], t[3][0]), 'ralational → data MENOR data \n' + t[1][1] + t[3][1]]
     elif t[2] == '>=':
-        t[0] = [RelationalOperation(RELATIONAL_OPERATION.MAYOR_IGUAL, t[1][0], t[3][0]), 'ralational: data MAYOR_IGUAL data \n' + t[1][1] + t[3][1]]
+        t[0] = [RelationalOperation(RELATIONAL_OPERATION.MAYOR_IGUAL, t[1][0], t[3][0]), 'ralational → data MAYOR_IGUAL data \n' + t[1][1] + t[3][1]]
     elif t[2] == '<=':
-        t[0] = [RelationalOperation(RELATIONAL_OPERATION.MENOR_IGUAL, t[1][0], t[3][0]), 'ralational: data MENOR_IGUAL data \n' + t[1][1] + t[3][1]]
+        t[0] = [RelationalOperation(RELATIONAL_OPERATION.MENOR_IGUAL, t[1][0], t[3][0]), 'ralational → data MENOR_IGUAL data \n' + t[1][1] + t[3][1]]
 
 
 def p_pointer(t):
     'pointer        : AND_BIT var'
-    t[0] = [Pointer(t[2][0]), 'pointer: AND_BIT var \n' + t[2][1]]
+    t[0] = [Pointer(t[2][0]), 'pointer → AND_BIT var \n' + t[2][1]]
 
 
 def p_error(t):
@@ -608,22 +608,10 @@ def analizar(texto, textview):
         returned = parser.parse(texto)   
     except:
         errores = ''
-        agregarError('ERROR NO CONTROLADO: A ocurrido un problema en el analisis lexico y sintactico. \nPara recivir soporte pongase en contacto con siguiente correo: jorgejuarezdal@gmail.com')
+        agregarError('ERROR NO CONTROLADO: A ocurrido un problema en el analisis lexico y sintactico. \n                   Para recivir soporte pongase en contacto con siguiente correo: jorgejuarezdal@gmail.com')
     finally:
         textview.setText(errores)   
 
     return returned
 
-'''lexer = lex.lex()
-parser = yacc.yacc()
-#input ='main: \t\n $t0[1][3] = 4; \t\n goto t2; \n ret0: \t\n print($t5); \t\n exit; \t\n f1: \n $a1 = $a0; \t\n goto f2; \t\n ret1: \n $v0 = $v1; \t\n goto ret0; \t\n f2: \n $v1 = $a1*$a1; \t\n goto ret1;'
-#input = 'main: \t\n $t1 = 54; \t\n exit;'
-lexer.input(input)
 
-perreo = parser.parse(input)
-
-GraphAST(perreo[0])
-
-print(perreo[1])
-
-interpretar(perreo[0])'''

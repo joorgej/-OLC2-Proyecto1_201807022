@@ -8,6 +8,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+'''from PyQt5.QtCore import QFile, QRegExp, Qt
+from PyQt5.QtGui import QFont, QSyntaxHighlighter, QTextCharFormat'''
 import threading
 import ascendente as ascendente
 import descendente as descendente
@@ -21,6 +23,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowModality(QtCore.Qt.NonModal)
         MainWindow.resize(1920, 1000)
+        QtWidgets.QLineEdit
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(88, 88, 88))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -220,12 +223,23 @@ class Ui_MainWindow(object):
         """Consola"""
         self.textEdit_2 = QtWidgets.QTextEdit(self.centralwidget)
         self.textEdit_2.setGeometry(QtCore.QRect(80, 710, 1181, 211))
+        font = self.textEdit_2.font()
+        font.setPointSize(11)
+        self.textEdit_2.setFont(font)
+        self.textEdit_2.setTextColor(QtGui.QColor(254,245,100))
         self.textEdit_2.setObjectName("textEdit_2")
+        
 
         """Editor de codigo"""
         self.textEdit = QtWidgets.QTextEdit(self.centralwidget)
         self.textEdit.setGeometry(QtCore.QRect(80, 130, 1751, 501))
         self.textEdit.setObjectName("textEdit")
+        font = self.textEdit.font()
+        font.setPointSize(12)
+        self.textEdit.setFont(font)
+        self.highlighter = Highlighter(self.textEdit.document())
+
+
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(90, 665, 221, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -436,7 +450,7 @@ class Ui_MainWindow(object):
 
     def openFile(self):
         try:
-            fileName = QtWidgets.QFileDialog.getOpenFileName(None, 'Abrir archivos', 'C:\\',"Augus files (*.aug)")
+            fileName = QtWidgets.QFileDialog.getOpenFileName(None, 'brir archivos', 'C:\\',"Augus files (*.aug)")
             _file = open(fileName[0],"r")
             content = _file.read()
             self.textEdit.setText(content)
@@ -479,7 +493,12 @@ class Ui_MainWindow(object):
         arr = ascendente.analizar(texto, self.textEdit_2)
         self.ast = arr[0]
         self.gramatica = arr[1]
-        interpretar(arr[0], self.textEdit_2, self.textEdit_3)
+        texto = self.textEdit_2.toPlainText()
+        if arr[0] != None:
+            try:
+                interpretar(arr[0], self.textEdit_2, self.textEdit_3)
+            except:
+                self.textEdit_2.setText(texto + 'ERROR NO CONTROLADO: A ocurrido un problema en la ejecucion del codigo. \n                   Para recivir soporte pongase en contacto con siguiente correo: jorgejuarezdal@gmail.com')
 
 
 
@@ -489,11 +508,18 @@ class Ui_MainWindow(object):
         arr = descendente.analizar(texto, self.textEdit_2)
         self.ast = arr[0]
         self.gramatica = arr[1]
+        texto = self.textEdit_2.toPlainText()
+        if arr[0] != None:
+            try:
+                interpretar(arr[0], self.textEdit_2, self.textEdit_3)
+            except:
+                self.textEdit_2.setText(texto + 'ERROR NO CONTROLADO: A ocurrido un problema en la ejecucion del codigo. \n                   Para recivir soporte pongase en contacto con siguiente correo: jorgejuarezdal@gmail.com')
+
         
 
     def graphAST(self):
         if self.ast != None:
-            GraphAST(self.ast)
+            GraphAST(self.ast, self.textEdit_2)
 
 
     def graphGrammar(self):
@@ -503,6 +529,72 @@ class Ui_MainWindow(object):
             dot.node_attr.update(shape = 'record')
             dot.node_attr.update(center = 'false')
             dot.node(str(0), '{'+ self.gramatica.replace('\n', '\\l |')[:-1] +'}')
-            dot.view()
+            try:
+                dot.view()
+            except:
+                self.textEdit_2.setText('ERROR: No fue posible realizar el reporte gramatical por algun error desconocido.')
 
-            
+class Highlighter(QtGui.QSyntaxHighlighter):
+    def __init__(self, parent=None):
+        super(Highlighter, self).__init__(parent)
+
+        signFormat = QtGui.QTextCharFormat()
+        signFormat.setForeground(QtGui.QColor(206,61,81))
+
+        singPatterns = ["[=]", "[+]", "[>]"
+                ,"[<]", "[-]", "[*]", "[/]"
+                ,"[&]", "[|]", "[;]", "[:]"
+                , "[[]", "[]]", "[(]", "[)]"
+                , "[\\^]", "[%]", "[~]", "[,]"]
+
+        self.highlightingRules = [(QtCore.QRegExp(pattern), signFormat)
+                for pattern in singPatterns]
+
+
+        registerFormat = QtGui.QTextCharFormat()
+        registerFormat.setForeground(QtGui.QColor(140,192,176))
+        self.highlightingRules.append((QtCore.QRegExp("[$].([0-9]+|.)\\b"),
+                registerFormat))
+
+        singleLineCommentFormat = QtGui.QTextCharFormat()
+        singleLineCommentFormat.setForeground(QtGui.QColor(240, 184, 184))
+        self.highlightingRules.append((QtCore.QRegExp("[#](.|\\d)*"),
+                singleLineCommentFormat))
+
+
+        quotationFormat = QtGui.QTextCharFormat()
+        quotationFormat.setForeground(QtGui.QColor(230,127,131))
+        self.highlightingRules.append((QtCore.QRegExp("\".*\"|\'.*\'"), quotationFormat))
+
+        numberFormat = QtGui.QTextCharFormat()
+        numberFormat.setForeground(QtGui.QColor(203,242,229))
+        self.highlightingRules.append((QtCore.QRegExp("\\b\\d+(?:\\.\\d{0,20})?"),
+                numberFormat))
+
+        keywordFormat = QtGui.QTextCharFormat()
+        keywordFormat.setForeground(QtGui.QColor(0, 135, 108))
+
+        keywordPatterns = ["\\bchar\\b", "\\bfloat\\b", "\\bint\\b",
+                "\\bif\\b", "\\bgoto\\b", "\\bunset\\b", "\\bset\\b",
+                "\\bprint\\b", "\\bread\\b", "\\bexit\\b", "\\bxor\\b"
+                , "\\babs\\b", "\\barray\\b"]
+        for pattern in keywordPatterns:
+            self.highlightingRules.append((QtCore.QRegExp(pattern), keywordFormat))
+                
+        '''classFormat = QtGui.QTextCharFormat()
+        classFormat.setFontWeight(QtGui.QFont.Bold)
+        classFormat.setForeground(QtCore.Qt.darkMagenta)
+        self.highlightingRules.append((QtCore.QRegExp("\\b[A-Za-z9-0_]+\\b"),
+                classFormat))'''
+
+
+    def highlightBlock(self, text):
+        for pattern, format in self.highlightingRules:
+            expression = QtCore.QRegExp(pattern)
+            index = expression.indexIn(text)
+            while index >= 0:
+                length = expression.matchedLength()
+                self.setFormat(index, length, format)
+                index = expression.indexIn(text, index + length)
+
+
