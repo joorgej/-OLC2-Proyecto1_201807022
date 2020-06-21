@@ -1,0 +1,45 @@
+--------------RESOLUCION------------------
+BUSCAR:         80, 710, 1181, 211
+REMPLAZAR:      80, 410, 700, 110
+
+BUSCAR:         80, 130, 1751, 501
+REMPLAZAR:      80, 130, 1020, 250
+
+BUSCAR:         1310, 710, 521, 211
+REMPLAZAR:      800, 410, 300, 110
+
+
+-----------------PRINT---------------------
+
+*PEGAR EN descendente.py:
+def p_print_correction(t):     
+    'print          : PRINT PAR_IZQ primary PAR_DER'
+    t[0] = [Print(t[3][0]), 'print → PRINT PAR_IZQ primary PAR_DER \n'+ t[3][1]]
+
+*PEGAR EN ascendente.py:
+def p_print_correction(t):     
+    'print          : PRINT PAR_IZQ primary PAR_DER'
+    t[0] = Print(t[3])
+    gramarReport('print → PRINT PAR_IZQ primary PAR_DER')
+
+BUSCAR LA FUNCION EN AST_Graph.py:              def AST_Print(father, instruction): 
+PEGAR AL FINAL DE LA FUNCION:                   elif isinstance(instruction.register, Primary): AST_Primary(printIndex, instruction.register)
+
+BUSCAR LA FUNCION EN Interprete.py:             def i_print(instruction, consola):
+SUSTITUIR EL CODIGO DE LA FUNCION POR:                  
+    printed = ''
+    caso = 0
+    if isinstance(instruction.register, Register):
+        printed = ts.obtener(instruction.register.name)
+    elif isinstance(instruction.register, Array):
+        printed = ts.obtener(get_array_name(instruction.register, consola))
+    elif isinstance(instruction.register, Primary):
+        printed = i_get_data(instruction.register, consola)[0]
+        caso = 1
+
+    if printed == None:
+        addError('ERROR SEMANTICO: Se intento imprimir un registro no declarado. \n', consola)
+    else:
+        if caso == 0:
+            printed = printed.valor
+        consola.setText(consola.toPlainText() + '>> ' +str(printed) + '\n')
