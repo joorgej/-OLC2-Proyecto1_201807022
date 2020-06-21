@@ -1,4 +1,4 @@
---------------RESOLUCION------------------
+﻿--------------RESOLUCION------------------
 BUSCAR:         80, 710, 1181, 211
 REMPLAZAR:      80, 410, 700, 110
 
@@ -11,16 +11,16 @@ REMPLAZAR:      800, 410, 300, 110
 
 -----------------PRINT---------------------
 
-*PEGAR EN descendente.py:
-def p_print_correction(t):     
-    'print          : PRINT PAR_IZQ primary PAR_DER'
-    t[0] = [Print(t[3][0]), 'print → PRINT PAR_IZQ primary PAR_DER \n'+ t[3][1]]
+BUSCAR EN descendente.py:	def p_print(t):  
+REMPLAZAR EL CONTENIDO DE LA FUNCION POR:     
+    'print          : PRINT PAR_IZQ data PAR_DER'
+    t[0] = [Print(t[3][0]), 'print → PRINT PAR_IZQ data PAR_DER \n'+ t[3][1]]
 
-*PEGAR EN ascendente.py:
-def p_print_correction(t):     
-    'print          : PRINT PAR_IZQ primary PAR_DER'
+BUSCAR EN ascendente.py:	def p_print(t):
+REMPLAZAR EL CONTENIDO DE LA FUNCION POR:     
+    'print          : PRINT PAR_IZQ data PAR_DER'
     t[0] = Print(t[3])
-    gramarReport('print → PRINT PAR_IZQ primary PAR_DER')
+    gramarReport('print → PRINT PAR_IZQ data PAR_DER')
 
 BUSCAR LA FUNCION EN AST_Graph.py:              def AST_Print(father, instruction): 
 PEGAR AL FINAL DE LA FUNCION:                   elif isinstance(instruction.register, Primary): AST_Primary(printIndex, instruction.register)
